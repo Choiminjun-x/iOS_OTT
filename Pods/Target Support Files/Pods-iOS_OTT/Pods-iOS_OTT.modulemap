@@ -1,0 +1,6 @@
+framework module Pods_iOS_OTT {
+  umbrella header "Pods-iOS_OTT-umbrella.h"
+
+  export *
+  module * { export * }
+}

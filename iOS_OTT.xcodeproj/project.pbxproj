@@ -1,0 +1,505 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3EB2D68F29E008E40036DBB7 /* Sets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB2D68E29E008E40036DBB7 /* Sets.swift */; };
+		3EB2D69129E014290036DBB7 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB2D69029E014290036DBB7 /* MovieCell.swift */; };
+		3EC6069429DFD23F00AEACD7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC6069329DFD23F00AEACD7 /* AppDelegate.swift */; };
+		3EC6069629DFD23F00AEACD7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC6069529DFD23F00AEACD7 /* SceneDelegate.swift */; };
+		3EC6069D29DFD24000AEACD7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3EC6069C29DFD24000AEACD7 /* Assets.xcassets */; };
+		3EC606A029DFD24000AEACD7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EC6069E29DFD24000AEACD7 /* LaunchScreen.storyboard */; };
+		3EC606AD29DFD39000AEACD7 /* OTTPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC606A729DFD39000AEACD7 /* OTTPresenter.swift */; };
+		3EC606AE29DFD39000AEACD7 /* OTTWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC606A829DFD39000AEACD7 /* OTTWorker.swift */; };
+		3EC606AF29DFD39000AEACD7 /* OTTRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC606A929DFD39000AEACD7 /* OTTRouter.swift */; };
+		3EC606B029DFD39000AEACD7 /* OTTModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC606AA29DFD39000AEACD7 /* OTTModels.swift */; };
+		3EC606B129DFD39000AEACD7 /* OTTViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC606AB29DFD39000AEACD7 /* OTTViewController.swift */; };
+		3EC606B229DFD39000AEACD7 /* OTTInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC606AC29DFD39000AEACD7 /* OTTInteractor.swift */; };
+		3EC606B529DFD3AB00AEACD7 /* OTTView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC606B329DFD3AB00AEACD7 /* OTTView.swift */; };
+		3EC606B629DFD3AB00AEACD7 /* OTTView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EC606B429DFD3AB00AEACD7 /* OTTView.xib */; };
+		3EC606B929DFD6B600AEACD7 /* PopularMovieListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC606B829DFD6B600AEACD7 /* PopularMovieListModel.swift */; };
+		3EC606BB29DFD6C700AEACD7 /* NowPlayingMovieListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC606BA29DFD6C700AEACD7 /* NowPlayingMovieListModel.swift */; };
+		3EC606BD29DFD6DA00AEACD7 /* TopRatedMovieListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC606BC29DFD6DA00AEACD7 /* TopRatedMovieListModel.swift */; };
+		3EC606BF29DFD6F000AEACD7 /* UpComingMovieListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC606BE29DFD6F000AEACD7 /* UpComingMovieListModel.swift */; };
+		AF9C6C53E371C258BF9FB682 /* Pods_iOS_OTT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBE466AC15C63D582CB30BDC /* Pods_iOS_OTT.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		3EB2D68E29E008E40036DBB7 /* Sets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sets.swift; sourceTree = "<group>"; };
+		3EB2D69029E014290036DBB7 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
+		3EC6069029DFD23F00AEACD7 /* iOS_OTT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS_OTT.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3EC6069329DFD23F00AEACD7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3EC6069529DFD23F00AEACD7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		3EC6069C29DFD24000AEACD7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3EC6069F29DFD24000AEACD7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3EC606A129DFD24000AEACD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3EC606A729DFD39000AEACD7 /* OTTPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTTPresenter.swift; sourceTree = "<group>"; };
+		3EC606A829DFD39000AEACD7 /* OTTWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTTWorker.swift; sourceTree = "<group>"; };
+		3EC606A929DFD39000AEACD7 /* OTTRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTTRouter.swift; sourceTree = "<group>"; };
+		3EC606AA29DFD39000AEACD7 /* OTTModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTTModels.swift; sourceTree = "<group>"; };
+		3EC606AB29DFD39000AEACD7 /* OTTViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTTViewController.swift; sourceTree = "<group>"; };
+		3EC606AC29DFD39000AEACD7 /* OTTInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTTInteractor.swift; sourceTree = "<group>"; };
+		3EC606B329DFD3AB00AEACD7 /* OTTView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTTView.swift; sourceTree = "<group>"; };
+		3EC606B429DFD3AB00AEACD7 /* OTTView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OTTView.xib; sourceTree = "<group>"; };
+		3EC606B829DFD6B600AEACD7 /* PopularMovieListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularMovieListModel.swift; sourceTree = "<group>"; };
+		3EC606BA29DFD6C700AEACD7 /* NowPlayingMovieListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingMovieListModel.swift; sourceTree = "<group>"; };
+		3EC606BC29DFD6DA00AEACD7 /* TopRatedMovieListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopRatedMovieListModel.swift; sourceTree = "<group>"; };
+		3EC606BE29DFD6F000AEACD7 /* UpComingMovieListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpComingMovieListModel.swift; sourceTree = "<group>"; };
+		4415A52EE62CD584E815255D /* Pods-iOS_OTT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS_OTT.release.xcconfig"; path = "Target Support Files/Pods-iOS_OTT/Pods-iOS_OTT.release.xcconfig"; sourceTree = "<group>"; };
+		E1E00A8C4F2677D63959FAB1 /* Pods-iOS_OTT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS_OTT.debug.xcconfig"; path = "Target Support Files/Pods-iOS_OTT/Pods-iOS_OTT.debug.xcconfig"; sourceTree = "<group>"; };
+		FBE466AC15C63D582CB30BDC /* Pods_iOS_OTT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOS_OTT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3EC6068D29DFD23F00AEACD7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AF9C6C53E371C258BF9FB682 /* Pods_iOS_OTT.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3EB2D6A029E03CC70036DBB7 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				3EC606B329DFD3AB00AEACD7 /* OTTView.swift */,
+				3EC606B429DFD3AB00AEACD7 /* OTTView.xib */,
+				3EC606AB29DFD39000AEACD7 /* OTTViewController.swift */,
+				3EC606AC29DFD39000AEACD7 /* OTTInteractor.swift */,
+				3EC606A829DFD39000AEACD7 /* OTTWorker.swift */,
+				3EC606A729DFD39000AEACD7 /* OTTPresenter.swift */,
+				3EC606A929DFD39000AEACD7 /* OTTRouter.swift */,
+				3EC606AA29DFD39000AEACD7 /* OTTModels.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		3EC6068729DFD23F00AEACD7 = {
+			isa = PBXGroup;
+			children = (
+				3EC6069229DFD23F00AEACD7 /* iOS_OTT */,
+				3EC6069129DFD23F00AEACD7 /* Products */,
+				D7E3CBC0E3F13E284C2D0841 /* Pods */,
+				514422B6C93ABB7A3537FB8B /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		3EC6069129DFD23F00AEACD7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3EC6069029DFD23F00AEACD7 /* iOS_OTT.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3EC6069229DFD23F00AEACD7 /* iOS_OTT */ = {
+			isa = PBXGroup;
+			children = (
+				3EC6069329DFD23F00AEACD7 /* AppDelegate.swift */,
+				3EC6069529DFD23F00AEACD7 /* SceneDelegate.swift */,
+				3EC6069C29DFD24000AEACD7 /* Assets.xcassets */,
+				3EC6069E29DFD24000AEACD7 /* LaunchScreen.storyboard */,
+				3EC606A129DFD24000AEACD7 /* Info.plist */,
+				3EC606C029DFD74100AEACD7 /* Page */,
+				3EB2D68E29E008E40036DBB7 /* Sets.swift */,
+			);
+			path = iOS_OTT;
+			sourceTree = "<group>";
+		};
+		3EC606B729DFD67F00AEACD7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3EC606B829DFD6B600AEACD7 /* PopularMovieListModel.swift */,
+				3EC606BA29DFD6C700AEACD7 /* NowPlayingMovieListModel.swift */,
+				3EC606BC29DFD6DA00AEACD7 /* TopRatedMovieListModel.swift */,
+				3EC606BE29DFD6F000AEACD7 /* UpComingMovieListModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3EC606C029DFD74100AEACD7 /* Page */ = {
+			isa = PBXGroup;
+			children = (
+				3EB2D6A029E03CC70036DBB7 /* Main */,
+				3EC606C129DFF24B00AEACD7 /* Cell */,
+				3EC606B729DFD67F00AEACD7 /* Model */,
+			);
+			path = Page;
+			sourceTree = "<group>";
+		};
+		3EC606C129DFF24B00AEACD7 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				3EB2D69029E014290036DBB7 /* MovieCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		514422B6C93ABB7A3537FB8B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FBE466AC15C63D582CB30BDC /* Pods_iOS_OTT.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D7E3CBC0E3F13E284C2D0841 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E1E00A8C4F2677D63959FAB1 /* Pods-iOS_OTT.debug.xcconfig */,
+				4415A52EE62CD584E815255D /* Pods-iOS_OTT.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3EC6068F29DFD23F00AEACD7 /* iOS_OTT */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3EC606A429DFD24000AEACD7 /* Build configuration list for PBXNativeTarget "iOS_OTT" */;
+			buildPhases = (
+				67A7C9536CB23646F7CAB3AB /* [CP] Check Pods Manifest.lock */,
+				3EC6068C29DFD23F00AEACD7 /* Sources */,
+				3EC6068D29DFD23F00AEACD7 /* Frameworks */,
+				3EC6068E29DFD23F00AEACD7 /* Resources */,
+				659172B26A01AFCE132741D5 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iOS_OTT;
+			productName = iOS_OTT;
+			productReference = 3EC6069029DFD23F00AEACD7 /* iOS_OTT.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3EC6068829DFD23F00AEACD7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1410;
+				LastUpgradeCheck = 1410;
+				TargetAttributes = {
+					3EC6068F29DFD23F00AEACD7 = {
+						CreatedOnToolsVersion = 14.1;
+					};
+				};
+			};
+			buildConfigurationList = 3EC6068B29DFD23F00AEACD7 /* Build configuration list for PBXProject "iOS_OTT" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3EC6068729DFD23F00AEACD7;
+			productRefGroup = 3EC6069129DFD23F00AEACD7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3EC6068F29DFD23F00AEACD7 /* iOS_OTT */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3EC6068E29DFD23F00AEACD7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3EC606A029DFD24000AEACD7 /* LaunchScreen.storyboard in Resources */,
+				3EC606B629DFD3AB00AEACD7 /* OTTView.xib in Resources */,
+				3EC6069D29DFD24000AEACD7 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		659172B26A01AFCE132741D5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iOS_OTT/Pods-iOS_OTT-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iOS_OTT/Pods-iOS_OTT-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iOS_OTT/Pods-iOS_OTT-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		67A7C9536CB23646F7CAB3AB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iOS_OTT-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3EC6068C29DFD23F00AEACD7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3EC606BF29DFD6F000AEACD7 /* UpComingMovieListModel.swift in Sources */,
+				3EC606B129DFD39000AEACD7 /* OTTViewController.swift in Sources */,
+				3EC606BB29DFD6C700AEACD7 /* NowPlayingMovieListModel.swift in Sources */,
+				3EC606AF29DFD39000AEACD7 /* OTTRouter.swift in Sources */,
+				3EC606BD29DFD6DA00AEACD7 /* TopRatedMovieListModel.swift in Sources */,
+				3EC606AD29DFD39000AEACD7 /* OTTPresenter.swift in Sources */,
+				3EC606B029DFD39000AEACD7 /* OTTModels.swift in Sources */,
+				3EB2D68F29E008E40036DBB7 /* Sets.swift in Sources */,
+				3EC6069429DFD23F00AEACD7 /* AppDelegate.swift in Sources */,
+				3EC606AE29DFD39000AEACD7 /* OTTWorker.swift in Sources */,
+				3EB2D69129E014290036DBB7 /* MovieCell.swift in Sources */,
+				3EC606B929DFD6B600AEACD7 /* PopularMovieListModel.swift in Sources */,
+				3EC606B229DFD39000AEACD7 /* OTTInteractor.swift in Sources */,
+				3EC606B529DFD3AB00AEACD7 /* OTTView.swift in Sources */,
+				3EC6069629DFD23F00AEACD7 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		3EC6069E29DFD24000AEACD7 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3EC6069F29DFD24000AEACD7 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3EC606A229DFD24000AEACD7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		3EC606A329DFD24000AEACD7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3EC606A529DFD24000AEACD7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E1E00A8C4F2677D63959FAB1 /* Pods-iOS_OTT.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 34URJ87ZA5;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = iOS_OTT/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "test.iOS-OTT";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3EC606A629DFD24000AEACD7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4415A52EE62CD584E815255D /* Pods-iOS_OTT.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 34URJ87ZA5;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = iOS_OTT/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "test.iOS-OTT";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3EC6068B29DFD23F00AEACD7 /* Build configuration list for PBXProject "iOS_OTT" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3EC606A229DFD24000AEACD7 /* Debug */,
+				3EC606A329DFD24000AEACD7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3EC606A429DFD24000AEACD7 /* Build configuration list for PBXNativeTarget "iOS_OTT" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3EC606A529DFD24000AEACD7 /* Debug */,
+				3EC606A629DFD24000AEACD7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3EC6068829DFD23F00AEACD7 /* Project object */;
+}
