@@ -1,6 +1,7 @@
 # iOS_OTT
 
-## NetFlix 홈 영화 리스트 Demo Project  
+   
+## Movie Open API를 활용한 NetFlix 홈 영화 리스트 화면 Demo Project
 
 1. 개발 언어: Swift 
 2. 적용 패턴: CleanSwift
