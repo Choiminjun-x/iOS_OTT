@@ -13,19 +13,16 @@
 		3EC6069629DFD23F00AEACD7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC6069529DFD23F00AEACD7 /* SceneDelegate.swift */; };
 		3EC6069D29DFD24000AEACD7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3EC6069C29DFD24000AEACD7 /* Assets.xcassets */; };
 		3EC606A029DFD24000AEACD7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EC6069E29DFD24000AEACD7 /* LaunchScreen.storyboard */; };
-		3EC606AD29DFD39000AEACD7 /* OTTPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC606A729DFD39000AEACD7 /* OTTPresenter.swift */; };
-		3EC606AE29DFD39000AEACD7 /* OTTWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC606A829DFD39000AEACD7 /* OTTWorker.swift */; };
-		3EC606AF29DFD39000AEACD7 /* OTTRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC606A929DFD39000AEACD7 /* OTTRouter.swift */; };
-		3EC606B029DFD39000AEACD7 /* OTTModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC606AA29DFD39000AEACD7 /* OTTModels.swift */; };
-		3EC606B129DFD39000AEACD7 /* OTTViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC606AB29DFD39000AEACD7 /* OTTViewController.swift */; };
-		3EC606B229DFD39000AEACD7 /* OTTInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC606AC29DFD39000AEACD7 /* OTTInteractor.swift */; };
-		3EC606B529DFD3AB00AEACD7 /* OTTView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC606B329DFD3AB00AEACD7 /* OTTView.swift */; };
-		3EC606B629DFD3AB00AEACD7 /* OTTView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EC606B429DFD3AB00AEACD7 /* OTTView.xib */; };
-		3EC606B929DFD6B600AEACD7 /* PopularMovieListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC606B829DFD6B600AEACD7 /* PopularMovieListModel.swift */; };
-		3EC606BB29DFD6C700AEACD7 /* NowPlayingMovieListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC606BA29DFD6C700AEACD7 /* NowPlayingMovieListModel.swift */; };
-		3EC606BD29DFD6DA00AEACD7 /* TopRatedMovieListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC606BC29DFD6DA00AEACD7 /* TopRatedMovieListModel.swift */; };
-		3EC606BF29DFD6F000AEACD7 /* UpComingMovieListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC606BE29DFD6F000AEACD7 /* UpComingMovieListModel.swift */; };
+		3EC606AD29DFD39000AEACD7 /* OTTMainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC606A729DFD39000AEACD7 /* OTTMainPresenter.swift */; };
+		3EC606AE29DFD39000AEACD7 /* OTTMainWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC606A829DFD39000AEACD7 /* OTTMainWorker.swift */; };
+		3EC606AF29DFD39000AEACD7 /* OTTMainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC606A929DFD39000AEACD7 /* OTTMainRouter.swift */; };
+		3EC606B029DFD39000AEACD7 /* OTTMainModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC606AA29DFD39000AEACD7 /* OTTMainModels.swift */; };
+		3EC606B129DFD39000AEACD7 /* OTTMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC606AB29DFD39000AEACD7 /* OTTMainViewController.swift */; };
+		3EC606B229DFD39000AEACD7 /* OTTMainInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC606AC29DFD39000AEACD7 /* OTTMainInteractor.swift */; };
+		3EC606B529DFD3AB00AEACD7 /* OTTMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC606B329DFD3AB00AEACD7 /* OTTMainView.swift */; };
+		3EC606B629DFD3AB00AEACD7 /* OTTMainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EC606B429DFD3AB00AEACD7 /* OTTMainView.xib */; };
 		AF9C6C53E371C258BF9FB682 /* Pods_iOS_OTT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBE466AC15C63D582CB30BDC /* Pods_iOS_OTT.framework */; };
+		B0C3BF062B20B0DB00546122 /* MovieListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C3BF052B20B0DB00546122 /* MovieListModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,19 +34,16 @@
 		3EC6069C29DFD24000AEACD7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3EC6069F29DFD24000AEACD7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3EC606A129DFD24000AEACD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3EC606A729DFD39000AEACD7 /* OTTPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTTPresenter.swift; sourceTree = "<group>"; };
-		3EC606A829DFD39000AEACD7 /* OTTWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTTWorker.swift; sourceTree = "<group>"; };
-		3EC606A929DFD39000AEACD7 /* OTTRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTTRouter.swift; sourceTree = "<group>"; };
-		3EC606AA29DFD39000AEACD7 /* OTTModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTTModels.swift; sourceTree = "<group>"; };
-		3EC606AB29DFD39000AEACD7 /* OTTViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTTViewController.swift; sourceTree = "<group>"; };
-		3EC606AC29DFD39000AEACD7 /* OTTInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTTInteractor.swift; sourceTree = "<group>"; };
-		3EC606B329DFD3AB00AEACD7 /* OTTView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTTView.swift; sourceTree = "<group>"; };
-		3EC606B429DFD3AB00AEACD7 /* OTTView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OTTView.xib; sourceTree = "<group>"; };
-		3EC606B829DFD6B600AEACD7 /* PopularMovieListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularMovieListModel.swift; sourceTree = "<group>"; };
-		3EC606BA29DFD6C700AEACD7 /* NowPlayingMovieListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingMovieListModel.swift; sourceTree = "<group>"; };
-		3EC606BC29DFD6DA00AEACD7 /* TopRatedMovieListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopRatedMovieListModel.swift; sourceTree = "<group>"; };
-		3EC606BE29DFD6F000AEACD7 /* UpComingMovieListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpComingMovieListModel.swift; sourceTree = "<group>"; };
+		3EC606A729DFD39000AEACD7 /* OTTMainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTTMainPresenter.swift; sourceTree = "<group>"; };
+		3EC606A829DFD39000AEACD7 /* OTTMainWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTTMainWorker.swift; sourceTree = "<group>"; };
+		3EC606A929DFD39000AEACD7 /* OTTMainRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTTMainRouter.swift; sourceTree = "<group>"; };
+		3EC606AA29DFD39000AEACD7 /* OTTMainModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTTMainModels.swift; sourceTree = "<group>"; };
+		3EC606AB29DFD39000AEACD7 /* OTTMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTTMainViewController.swift; sourceTree = "<group>"; };
+		3EC606AC29DFD39000AEACD7 /* OTTMainInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTTMainInteractor.swift; sourceTree = "<group>"; };
+		3EC606B329DFD3AB00AEACD7 /* OTTMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTTMainView.swift; sourceTree = "<group>"; };
+		3EC606B429DFD3AB00AEACD7 /* OTTMainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OTTMainView.xib; sourceTree = "<group>"; };
 		4415A52EE62CD584E815255D /* Pods-iOS_OTT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS_OTT.release.xcconfig"; path = "Target Support Files/Pods-iOS_OTT/Pods-iOS_OTT.release.xcconfig"; sourceTree = "<group>"; };
+		B0C3BF052B20B0DB00546122 /* MovieListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListModel.swift; sourceTree = "<group>"; };
 		E1E00A8C4F2677D63959FAB1 /* Pods-iOS_OTT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS_OTT.debug.xcconfig"; path = "Target Support Files/Pods-iOS_OTT/Pods-iOS_OTT.debug.xcconfig"; sourceTree = "<group>"; };
 		FBE466AC15C63D582CB30BDC /* Pods_iOS_OTT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOS_OTT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -69,14 +63,14 @@
 		3EB2D6A029E03CC70036DBB7 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				3EC606B329DFD3AB00AEACD7 /* OTTView.swift */,
-				3EC606B429DFD3AB00AEACD7 /* OTTView.xib */,
-				3EC606AB29DFD39000AEACD7 /* OTTViewController.swift */,
-				3EC606AC29DFD39000AEACD7 /* OTTInteractor.swift */,
-				3EC606A829DFD39000AEACD7 /* OTTWorker.swift */,
-				3EC606A729DFD39000AEACD7 /* OTTPresenter.swift */,
-				3EC606A929DFD39000AEACD7 /* OTTRouter.swift */,
-				3EC606AA29DFD39000AEACD7 /* OTTModels.swift */,
+				3EC606B329DFD3AB00AEACD7 /* OTTMainView.swift */,
+				3EC606B429DFD3AB00AEACD7 /* OTTMainView.xib */,
+				3EC606AB29DFD39000AEACD7 /* OTTMainViewController.swift */,
+				3EC606AC29DFD39000AEACD7 /* OTTMainInteractor.swift */,
+				3EC606A829DFD39000AEACD7 /* OTTMainWorker.swift */,
+				3EC606A729DFD39000AEACD7 /* OTTMainPresenter.swift */,
+				3EC606A929DFD39000AEACD7 /* OTTMainRouter.swift */,
+				3EC606AA29DFD39000AEACD7 /* OTTMainModels.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -116,10 +110,7 @@
 		3EC606B729DFD67F00AEACD7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				3EC606B829DFD6B600AEACD7 /* PopularMovieListModel.swift */,
-				3EC606BA29DFD6C700AEACD7 /* NowPlayingMovieListModel.swift */,
-				3EC606BC29DFD6DA00AEACD7 /* TopRatedMovieListModel.swift */,
-				3EC606BE29DFD6F000AEACD7 /* UpComingMovieListModel.swift */,
+				B0C3BF052B20B0DB00546122 /* MovieListModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -127,9 +118,9 @@
 		3EC606C029DFD74100AEACD7 /* Page */ = {
 			isa = PBXGroup;
 			children = (
-				3EB2D6A029E03CC70036DBB7 /* Main */,
 				3EC606C129DFF24B00AEACD7 /* Cell */,
 				3EC606B729DFD67F00AEACD7 /* Model */,
+				3EB2D6A029E03CC70036DBB7 /* Main */,
 			);
 			path = Page;
 			sourceTree = "<group>";
@@ -220,7 +211,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3EC606A029DFD24000AEACD7 /* LaunchScreen.storyboard in Resources */,
-				3EC606B629DFD3AB00AEACD7 /* OTTView.xib in Resources */,
+				3EC606B629DFD3AB00AEACD7 /* OTTMainView.xib in Resources */,
 				3EC6069D29DFD24000AEACD7 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -274,20 +265,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3EC606BF29DFD6F000AEACD7 /* UpComingMovieListModel.swift in Sources */,
-				3EC606B129DFD39000AEACD7 /* OTTViewController.swift in Sources */,
-				3EC606BB29DFD6C700AEACD7 /* NowPlayingMovieListModel.swift in Sources */,
-				3EC606AF29DFD39000AEACD7 /* OTTRouter.swift in Sources */,
-				3EC606BD29DFD6DA00AEACD7 /* TopRatedMovieListModel.swift in Sources */,
-				3EC606AD29DFD39000AEACD7 /* OTTPresenter.swift in Sources */,
-				3EC606B029DFD39000AEACD7 /* OTTModels.swift in Sources */,
+				3EC606B129DFD39000AEACD7 /* OTTMainViewController.swift in Sources */,
+				3EC606AF29DFD39000AEACD7 /* OTTMainRouter.swift in Sources */,
+				3EC606AD29DFD39000AEACD7 /* OTTMainPresenter.swift in Sources */,
+				3EC606B029DFD39000AEACD7 /* OTTMainModels.swift in Sources */,
 				3EB2D68F29E008E40036DBB7 /* Sets.swift in Sources */,
 				3EC6069429DFD23F00AEACD7 /* AppDelegate.swift in Sources */,
-				3EC606AE29DFD39000AEACD7 /* OTTWorker.swift in Sources */,
+				3EC606AE29DFD39000AEACD7 /* OTTMainWorker.swift in Sources */,
 				3EB2D69129E014290036DBB7 /* MovieCell.swift in Sources */,
-				3EC606B929DFD6B600AEACD7 /* PopularMovieListModel.swift in Sources */,
-				3EC606B229DFD39000AEACD7 /* OTTInteractor.swift in Sources */,
-				3EC606B529DFD3AB00AEACD7 /* OTTView.swift in Sources */,
+				B0C3BF062B20B0DB00546122 /* MovieListModel.swift in Sources */,
+				3EC606B229DFD39000AEACD7 /* OTTMainInteractor.swift in Sources */,
+				3EC606B529DFD3AB00AEACD7 /* OTTMainView.swift in Sources */,
 				3EC6069629DFD23F00AEACD7 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -426,9 +414,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 34URJ87ZA5;
+				DEVELOPMENT_TEAM = SCD58U4SPR;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iOS_OTT/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -443,6 +432,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "test.iOS-OTT";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -455,9 +445,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 34URJ87ZA5;
+				DEVELOPMENT_TEAM = SCD58U4SPR;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iOS_OTT/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -472,6 +463,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "test.iOS-OTT";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

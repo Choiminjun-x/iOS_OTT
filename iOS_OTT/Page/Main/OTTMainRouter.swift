@@ -1,5 +1,5 @@
 //
-//  OTTRouter.swift
+//  OTTMainRouter.swift
 //  iOS_OTT
 //
 //  Created by 최민준(Minjun Choi) on 2023/04/07.
@@ -12,15 +12,15 @@
 
 import UIKit
 
-protocol OTTRoutingLogic {
+protocol OTTMainRoutingLogic {
 }
 
-protocol OTTDataPassing {
-    var dataStore: OTTDataStore? { get }
+protocol OTTMainDataPassing {
+    var dataStore: OTTMainDataStore? { get }
 }
 
-class OTTRouter: NSObject, OTTRoutingLogic, OTTDataPassing {
-    weak var viewController: OTTViewController?
-    var dataStore: OTTDataStore?
+class OTTMainRouter: NSObject, OTTMainRoutingLogic, OTTMainDataPassing {
+    weak var viewController: OTTMainViewController?
+    var dataStore: OTTMainDataStore?
 
 }

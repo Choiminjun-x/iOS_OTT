@@ -1,5 +1,5 @@
 //
-//  OTTPresenter.swift
+//  OTTMainPresenter.swift
 //  iOS_OTT
 //
 //  Created by 최민준(Minjun Choi) on 2023/04/07.
@@ -12,22 +12,22 @@
 
 import UIKit
 
-protocol OTTPresentationLogic {
-    func presentPageInfo(response: OTT.Something.Response)
-    func presentPageInfoError(response: OTT.Something.Response)
+protocol OTTMainPresentationLogic {
+    func presentPageInfo(response: OTTMain.Something.Response)
+    func presentPageInfoError(response: OTTMain.Something.Response)
 }
 
-class OTTPresenter: OTTPresentationLogic {
-    weak var viewController: OTTDisplayLogic?
+class OTTMainPresenter: OTTMainPresentationLogic {
+    weak var viewController: OTTMainDisplayLogic?
     
     // MARK: Do something
     
-    func presentPageInfo(response: OTT.Something.Response) {
-        guard let movieType = response.movieType else { return }
+    func presentPageInfo(response: OTTMain.Something.Response) {
+        guard let listType = response.listType else { return }
         
         let imageBaseUrl: String = "https://image.tmdb.org/t/p/original"
         
-        switch movieType {
+        switch listType {
         case .popular:
             let cellModel: [MovieCellModel] = response.popularMovieListData?.results?.compactMap {
                 guard let path = $0.posterPath else { return nil }
@@ -44,7 +44,7 @@ class OTTPresenter: OTTPresentationLogic {
                 return boolean
             }()
             
-            self.viewController?.displayPageInfo(viewModel: .init(movieType: .popular,
+            self.viewController?.displayPageInfo(viewModel: .init(listType: .popular,
                                                                   cellModel: .init(
                                                                     cellModels: cellModel,
                                                                     isFirstPageYn: isFirstPageYn,
@@ -67,7 +67,7 @@ class OTTPresenter: OTTPresentationLogic {
                 return boolean
             }()
             
-            self.viewController?.displayPageInfo(viewModel: .init(movieType: .nowPlaying,
+            self.viewController?.displayPageInfo(viewModel: .init(listType: .nowPlaying,
                                                                   cellModel: .init(
                                                                     cellModels: cellModel,
                                                                     isFirstPageYn: isFirstPageYn,
@@ -90,7 +90,7 @@ class OTTPresenter: OTTPresentationLogic {
                 return boolean
             }()
             
-            self.viewController?.displayPageInfo(viewModel: .init(movieType: .topRated,
+            self.viewController?.displayPageInfo(viewModel: .init(listType: .topRated,
                                                                   cellModel: .init(
                                                                     cellModels: cellModel,
                                                                     isFirstPageYn: isFirstPageYn,
@@ -112,7 +112,7 @@ class OTTPresenter: OTTPresentationLogic {
                 return boolean
             }()
             
-            self.viewController?.displayPageInfo(viewModel: .init(movieType: .upComing,
+            self.viewController?.displayPageInfo(viewModel: .init(listType: .upComing,
                                                                   cellModel: .init(
                                                                     cellModels: cellModel,
                                                                     isFirstPageYn: isFirstPageYn,
@@ -121,7 +121,7 @@ class OTTPresenter: OTTPresentationLogic {
         }
     }
     
-    func presentPageInfoError(response: OTT.Something.Response) {
+    func presentPageInfoError(response: OTTMain.Something.Response) {
         
     }
 }

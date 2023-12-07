@@ -1,5 +1,5 @@
 //
-//  OTTViewController.swift
+//  OTTMainViewController.swift
 //  iOS_OTT
 //
 //  Created by 최민준(Minjun Choi) on 2023/04/07.
@@ -15,17 +15,18 @@ import RxSwift
 import RxCocoa
 
 
-protocol OTTDisplayLogic: class {
-    func displayPageInfo(viewModel: OTT.Something.ViewModel)
+protocol OTTMainDisplayLogic: AnyObject {
+    func displayPageInfo(viewModel: OTTMain.Something.ViewModel)
 }
 
-class OTTViewController: UIViewController, OTTDisplayLogic {
-    var interactor: OTTBusinessLogic?
-    var router: (NSObjectProtocol & OTTRoutingLogic & OTTDataPassing)?
+class OTTMainViewController: UIViewController, OTTMainDisplayLogic {
+    var interactor: OTTMainBusinessLogic?
+    var router: (NSObjectProtocol & OTTMainRoutingLogic & OTTMainDataPassing)?
     
-    var pageView: OTTView { self.view as! OTTView }
+    var pageView: OTTMainView { self.view as! OTTMainView }
     
     private let disposeBag: DisposeBag = .init()
+    
     
     // MARK: Object lifecycle
     
@@ -44,9 +45,9 @@ class OTTViewController: UIViewController, OTTDisplayLogic {
     
     private func setup() {
         let viewController = self
-        let interactor = OTTInteractor()
-        let presenter = OTTPresenter()
-        let router = OTTRouter()
+        let interactor = OTTMainInteractor()
+        let presenter = OTTMainPresenter()
+        let router = OTTMainRouter()
         viewController.interactor = interactor
         viewController.router = router
         interactor.presenter = presenter
@@ -59,62 +60,65 @@ class OTTViewController: UIViewController, OTTDisplayLogic {
     // MARK: - View lifecycle
     
     override func loadView() {
-        self.view = OTTView.create()
+        self.view = OTTMainView.create()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
     
+    
     // MARK: View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.requestPageInfo()
         self.eventBinding()
     }
     
     private func eventBinding() {
         self.pageView.popularMovieListNextEvent.bind {
-            self.interactor?.requestPageInfo(request: .init(movieType: .popular, pageType: .next))
+            self.interactor?.requestPageInfo(request: .init(listType: .popular, pageType: .next))
         }.disposed(by: self.disposeBag)
         self.pageView.nowPlayingMovieListNextEvent.bind {
-            self.interactor?.requestPageInfo(request: .init(movieType: .nowPlaying, pageType: .next))
+            self.interactor?.requestPageInfo(request: .init(listType: .nowPlaying, pageType: .next))
         }.disposed(by: self.disposeBag)
         self.pageView.topRatedMovieListNextEvent.bind {
-            self.interactor?.requestPageInfo(request: .init(movieType: .topRated, pageType: .next))
+            self.interactor?.requestPageInfo(request: .init(listType: .topRated, pageType: .next))
         }.disposed(by: self.disposeBag)
         self.pageView.upComingMovieListNextEvent.bind {
-            self.interactor?.requestPageInfo(request: .init(movieType: .upComing, pageType: .next))
+            self.interactor?.requestPageInfo(request: .init(listType: .upComing, pageType: .next))
         }.disposed(by: self.disposeBag)
     }
+    
     
     // MARK: Do something
     
     func requestPageInfo() {
-        self.interactor?.requestPageInfo(request: .init(movieType: .popular, pageType: .first))
-        self.interactor?.requestPageInfo(request: .init(movieType: .nowPlaying, pageType: .first))
-        self.interactor?.requestPageInfo(request: .init(movieType: .topRated, pageType: .first))
-        self.interactor?.requestPageInfo(request: .init(movieType: .upComing, pageType: .first))
+        self.interactor?.requestPageInfo(request: .init(listType: .popular, pageType: .first))
+        self.interactor?.requestPageInfo(request: .init(listType: .nowPlaying, pageType: .first))
+        self.interactor?.requestPageInfo(request: .init(listType: .topRated, pageType: .first))
+        self.interactor?.requestPageInfo(request: .init(listType: .upComing, pageType: .first))
     }
     
-    func displayPageInfo(viewModel: OTT.Something.ViewModel) {
-        guard let movieType = viewModel.movieType else { return }
+    func displayPageInfo(viewModel: OTTMain.Something.ViewModel) {
+        guard let listType = viewModel.listType else { return }
         
-        switch movieType {
+        switch listType {
         case .popular:
-            self.pageView.displayMovieList(viewModel: .init(movieType: .popular, cellModel: viewModel.cellModel))
+            self.pageView.displayMovieList(viewModel: .init(listType: .popular, cellModel: viewModel.cellModel))
             break
         case .nowPlaying:
-            self.pageView.displayMovieList(viewModel: .init(movieType: .nowPlaying, cellModel: viewModel.cellModel))
+            self.pageView.displayMovieList(viewModel: .init(listType: .nowPlaying, cellModel: viewModel.cellModel))
             break
         case .topRated:
-            self.pageView.displayMovieList(viewModel: .init(movieType: .topRated, cellModel: viewModel.cellModel))
+            self.pageView.displayMovieList(viewModel: .init(listType: .topRated, cellModel: viewModel.cellModel))
             break
         case .upComing:
-            self.pageView.displayMovieList(viewModel: .init(movieType: .upComing, cellModel: viewModel.cellModel))
+            self.pageView.displayMovieList(viewModel: .init(listType: .upComing, cellModel: viewModel.cellModel))
             break
         }
-       
     }
+    
 }

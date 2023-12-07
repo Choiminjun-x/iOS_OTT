@@ -1,5 +1,5 @@
 //
-//  OTTView.swift
+//  OTTMainView.swift
 //  iOS_OTT
 //
 //  Created by 최민준(Minjun Choi) on 2023/04/07.
@@ -10,7 +10,7 @@ import SDWebImage
 import RxCocoa
 
 
-enum OTTViewModel {
+enum OTTMainViewModel {
     struct MovieListModel {
         var cellModels: [MovieCellModel]
         var isFirstPageYn: Bool
@@ -18,8 +18,7 @@ enum OTTViewModel {
     }
 }
 
-class OTTView: UIView {
-    
+class OTTMainView: UIView {
     @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var seriesButton: UIButton!
@@ -61,13 +60,13 @@ class OTTView: UIView {
     
     private var randomNumber: Int = 0
     
-    var currentMovieType: OTT.MovieType = .popular
+    var currentMovieType: OTTMain.ListType = .popular
     
-    static func create() -> OTTView {
-        let bundle = Bundle(for: OTTView.self)
-        let nib = bundle.loadNibNamed("OTTView", owner: nil)
+    static func create() -> OTTMainView {
+        let bundle = Bundle(for: OTTMainView.self)
+        let nib = bundle.loadNibNamed("OTTMainView", owner: nil)
         let view = nib?.first
-        return view as! OTTView
+        return view as! OTTMainView
     }
     
     
@@ -151,12 +150,12 @@ class OTTView: UIView {
         
     }
     
-    public func displayMovieList(viewModel: OTT.Something.ViewModel) {
-        guard let movieType = viewModel.movieType else { return }
+    public func displayMovieList(viewModel: OTTMain.Something.ViewModel) {
+        guard let listType = viewModel.listType else { return }
         
-        self.currentMovieType = movieType
+        self.currentMovieType = listType
         
-        switch movieType {
+        switch listType {
         case .popular:
             guard let cellModels = viewModel.cellModel?.cellModels else { return }
             

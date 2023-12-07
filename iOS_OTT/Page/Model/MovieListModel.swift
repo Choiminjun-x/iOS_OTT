@@ -1,37 +1,25 @@
 //
-//  UpComingMovieListModel.swift
+//  MovieListModel.swift
 //  iOS_OTT
 //
-//  Created by 최민준(Minjun Choi) on 2023/04/07.
+//  Created by 최민준 on 2023/12/06.
 //
 
 import Foundation
 
 
-struct UpComingMovieListModel: Codable {
-    
-    var dates: Dates?
+struct MovieListModel: Codable { //Codable Protocol 채택
     var page: Int?
-    var results: [Results]?
+    var results: [Result]?
     var totalPages, totalResults: Int?
     
     enum CodingKeys: String, CodingKey {
-        case page, results, dates
+        case page, results
         case totalPages = "total_pages"
         case totalResults = "total_results"
     }
     
-    struct Dates: Codable {
-        var maximum: String?
-        var minimum: String?
-        
-        enum CodingKeys: String, CodingKey {
-            case maximum = "maximum"
-            case minimum = "minimum"
-        }
-    }
-    
-    struct Results: Codable {
+    struct Result: Codable {
         var adult: Bool?
         var backdropPath: String?
         var genreIds: [Int]?

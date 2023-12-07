@@ -1,5 +1,5 @@
 //
-//  OTTInteractor.swift
+//  OTTMainInteractor.swift
 //  iOS_OTT
 //
 //  Created by 최민준(Minjun Choi) on 2023/04/07.
@@ -14,20 +14,17 @@ import UIKit
 import RxSwift
 
 
-protocol OTTBusinessLogic {
-    func requestPageInfo(request: OTT.Something.Request)
+protocol OTTMainBusinessLogic {
+    func requestPageInfo(request: OTTMain.Something.Request)
 }
 
-protocol OTTDataStore {
-    var popularMovieResultList: [PopularMovieListModel.Result]? { get }
-    var nowPlayingMovieResultList: [NowPlayingMovieListModel.Results]? { get }
-    var topRatedMovieResultList: [TopRatedMovieListModel.Result]? { get }
-    var upComingMovieResultList: [UpComingMovieListModel.Results]? { get } 
+protocol OTTMainDataStore {
+    var popularMovieList: [MovieListModel.Result]? { get }
 }
 
-class OTTInteractor: OTTBusinessLogic, OTTDataStore {
-    var presenter: OTTPresentationLogic?
-    let worker: OTTWorker = .init()
+class OTTMainInteractor: OTTMainBusinessLogic, OTTMainDataStore {
+    var presenter: OTTMainPresentationLogic?
+    let worker: OTTMainWorker = .init()
     
     private let disposeBag: DisposeBag = .init()
     
@@ -36,16 +33,13 @@ class OTTInteractor: OTTBusinessLogic, OTTDataStore {
     var topRatedListPageNum: Int = 1
     var upComingListPageNum: Int = 1
     
-    var popularMovieResultList: [PopularMovieListModel.Result]?
-    var nowPlayingMovieResultList: [NowPlayingMovieListModel.Results]?
-    var topRatedMovieResultList: [TopRatedMovieListModel.Result]?
-    var upComingMovieResultList: [UpComingMovieListModel.Results]?
+    var popularMovieList: [MovieListModel.Result]?
+   
     
     // MARK: Do something
     
-    func requestPageInfo(request: OTT.Something.Request) {
-        
-        switch request.movieType {
+    func requestPageInfo(request: OTTMain.Something.Request) {
+        switch request.listType {
         case .popular:
             switch request.pageType {
             case .first:
@@ -54,11 +48,11 @@ class OTTInteractor: OTTBusinessLogic, OTTDataStore {
                 self.popularListPageNum += 1
             }
             
-            self.worker.requestPopularMovieList(pageNum: self.popularListPageNum)
+            self.worker.requestMovieList(listType: .popular, pageNum: self.popularListPageNum)
                 .subscribe(onSuccess: { (list) in
                     guard let results = list.results else { return }
-                    self.popularMovieResultList?.append(contentsOf: results)
-                    self.presenter?.presentPageInfo(response: .init(movieType: .popular, popularMovieListData: list))
+                    self.popularMovieList?.append(contentsOf: results)
+                    self.presenter?.presentPageInfo(response: .init(listType: .popular, popularMovieListData: list))
                 }, onFailure: { (error) in
                     self.presenter?.presentPageInfoError(response: .init(error: error))
                 }).disposed(by: self.disposeBag)
@@ -71,9 +65,9 @@ class OTTInteractor: OTTBusinessLogic, OTTDataStore {
             case .next:
                 self.nowPlayingListPageNum += 1
             }
-            self.worker.requestNowPlayingMovieList(pageNum: self.nowPlayingListPageNum)
+            self.worker.requestMovieList(listType: .nowPlaying, pageNum: self.nowPlayingListPageNum)
                 .subscribe(onSuccess: { (list) in
-                    self.presenter?.presentPageInfo(response: .init(movieType: .nowPlaying, nowPlayingMovieListData: list))
+                    self.presenter?.presentPageInfo(response: .init(listType: .nowPlaying, nowPlayingMovieListData: list))
                 }, onFailure: { (error) in
                     self.presenter?.presentPageInfoError(response: .init(error: error))
                 }).disposed(by: self.disposeBag)
@@ -86,9 +80,9 @@ class OTTInteractor: OTTBusinessLogic, OTTDataStore {
             case .next:
                 self.topRatedListPageNum += 1
             }
-            self.worker.requestTopRatedMovieList(pageNum: self.topRatedListPageNum)
+            self.worker.requestMovieList(listType: .topRated, pageNum: self.topRatedListPageNum)
                 .subscribe(onSuccess: { (list) in
-                    self.presenter?.presentPageInfo(response: .init(movieType: .topRated, topRatedMovieListData: list))
+                    self.presenter?.presentPageInfo(response: .init(listType: .topRated, topRatedMovieListData: list))
                 }, onFailure: { (error) in
                     self.presenter?.presentPageInfoError(response: .init(error: error))
                 }).disposed(by: self.disposeBag)
@@ -102,9 +96,9 @@ class OTTInteractor: OTTBusinessLogic, OTTDataStore {
                 self.upComingListPageNum += 1
             }
             
-            self.worker.requestUpComingMovieList(pageNum: self.upComingListPageNum)
+            self.worker.requestMovieList(listType: .upComing, pageNum: self.upComingListPageNum)
                 .subscribe(onSuccess: { (list) in
-                    self.presenter?.presentPageInfo(response: .init(movieType: .upComing, upComingMovieListData: list))
+                    self.presenter?.presentPageInfo(response: .init(listType: .upComing, upComingMovieListData: list))
                 }, onFailure: { (error) in
                     self.presenter?.presentPageInfoError(response: .init(error: error))
                 }).disposed(by: self.disposeBag)

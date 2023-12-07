@@ -1,5 +1,5 @@
 //
-//  OTTModels.swift
+//  OTTMainModels.swift
 //  iOS_OTT
 //
 //  Created by 최민준(Minjun Choi) on 2023/04/07.
@@ -12,13 +12,14 @@
 
 import UIKit
 
-enum OTT {
-
-    enum MovieType {
-        case popular
-        case nowPlaying
-        case topRated
-        case upComing
+enum OTTMain {
+    
+    // 영화 리스트 타입
+    enum ListType: String {
+        case popular = "popular"
+        case nowPlaying = "now_playing"
+        case topRated = "top_rated"
+        case upComing = "upcoming"
     }
     
     // MARK: Use cases
@@ -30,20 +31,20 @@ enum OTT {
                 case next
             }
             
-            var movieType: MovieType
+            var listType: ListType
             var pageType: PageType
         }
         struct Response {
-            var movieType: MovieType?
-            var popularMovieListData: PopularMovieListModel?
-            var nowPlayingMovieListData: NowPlayingMovieListModel?
-            var topRatedMovieListData: TopRatedMovieListModel?
-            var upComingMovieListData: UpComingMovieListModel?
+            var listType: ListType?
+            var popularMovieListData: MovieListModel?
+            var nowPlayingMovieListData: MovieListModel?
+            var topRatedMovieListData: MovieListModel?
+            var upComingMovieListData: MovieListModel?
             var error: Error?
         }
         struct ViewModel{
-            var movieType: MovieType?
-            var cellModel: OTTViewModel.MovieListModel?
+            var listType: ListType?
+            var cellModel: OTTMainViewModel.MovieListModel?
         }
     }
 }
