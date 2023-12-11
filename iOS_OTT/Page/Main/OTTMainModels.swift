@@ -16,8 +16,8 @@ enum OTTMain {
     
     // 영화 리스트 타입
     enum ListType: String {
-        case popular = "popular"
         case nowPlaying = "now_playing"
+        case popular = "popular"
         case topRated = "top_rated"
         case upComing = "upcoming"
     }
@@ -36,15 +36,15 @@ enum OTTMain {
         }
         struct Response {
             var listType: ListType?
-            var popularMovieListData: MovieListModel?
-            var nowPlayingMovieListData: MovieListModel?
-            var topRatedMovieListData: MovieListModel?
-            var upComingMovieListData: MovieListModel?
+            var nowPlayingMovieListData: MovieListDataModel?
+            var popularMovieListData: MovieListDataModel?
+            var topRatedMovieListData: MovieListDataModel?
+            var upComingMovieListData: MovieListDataModel?
             var error: Error?
         }
         struct ViewModel{
             var listType: ListType?
-            var cellModel: OTTMainViewModel.MovieListModel?
+            var cellModel: OTTMainViewModel.MovieListDataModel?
         }
     }
 }

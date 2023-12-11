@@ -1,5 +1,5 @@
 //
-//  MovieListModel.swift
+//  MovieListDataModel.swift
 //  iOS_OTT
 //
 //  Created by 최민준 on 2023/12/06.
@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct MovieListModel: Codable { //Codable Protocol 채택
+struct MovieListDataModel: Codable { //Codable Protocol 채택
     var page: Int?
     var results: [Result]?
     var totalPages, totalResults: Int?

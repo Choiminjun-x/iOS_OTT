@@ -12,6 +12,7 @@
 
 import UIKit
 import RxSwift
+import Alamofire
 
 
 protocol OTTMainBusinessLogic {
@@ -19,27 +20,49 @@ protocol OTTMainBusinessLogic {
 }
 
 protocol OTTMainDataStore {
-    var popularMovieList: [MovieListModel.Result]? { get }
+    var nowPlayingMovieList: [MovieListDataModel.Result] { get set }
+    var popularMovieList: [MovieListDataModel.Result] { get set }
 }
 
 class OTTMainInteractor: OTTMainBusinessLogic, OTTMainDataStore {
     var presenter: OTTMainPresentationLogic?
-    let worker: OTTMainWorker = .init()
     
     private let disposeBag: DisposeBag = .init()
     
-    var popularListPageNum: Int = 1
     var nowPlayingListPageNum: Int = 1
+    var popularListPageNum: Int = 1
     var topRatedListPageNum: Int = 1
     var upComingListPageNum: Int = 1
     
-    var popularMovieList: [MovieListModel.Result]?
-   
+    var nowPlayingMovieList = [MovieListDataModel.Result]()
+    var popularMovieList = [MovieListDataModel.Result]()
+    var totalPage: Int?
+    
+    let apiKey = "8dfb5cff049f9d201dd76dbbe04a0d71"
+    let language = "ko-RK" //en-US
+    
     
     // MARK: Do something
     
     func requestPageInfo(request: OTTMain.Something.Request) {
         switch request.listType {
+        case .nowPlaying:
+            switch request.pageType {
+            case .first:
+                self.nowPlayingListPageNum = 1
+            case .next:
+                self.nowPlayingListPageNum += 1
+            }
+            self.requestMovieList(listType: .nowPlaying, pageNum: self.nowPlayingListPageNum)
+                .subscribe(onSuccess: { (list) in
+                    guard let results = list.results else { return }
+                    self.nowPlayingMovieList.append(contentsOf: results)
+                    self.presenter?.presentPageInfo(response: .init(listType: .nowPlaying, nowPlayingMovieListData: list))
+                }, onFailure: { (error) in
+                    self.presenter?.presentPageInfoError(response: .init(error: error))
+                }).disposed(by: self.disposeBag)
+            break
+            
         case .popular:
             switch request.pageType {
             case .first:
@@ -48,31 +71,16 @@ class OTTMainInteractor: OTTMainBusinessLogic, OTTMainDataStore {
                 self.popularListPageNum += 1
             }
             
-            self.worker.requestMovieList(listType: .popular, pageNum: self.popularListPageNum)
+            self.requestMovieList(listType: .popular, pageNum: self.popularListPageNum)
                 .subscribe(onSuccess: { (list) in
                     guard let results = list.results else { return }
-                    self.popularMovieList?.append(contentsOf: results)
+                    self.popularMovieList.append(contentsOf: results)
                     self.presenter?.presentPageInfo(response: .init(listType: .popular, popularMovieListData: list))
                 }, onFailure: { (error) in
                     self.presenter?.presentPageInfoError(response: .init(error: error))
                 }).disposed(by: self.disposeBag)
             break
-            
-        case .nowPlaying:
-            switch request.pageType {
-            case .first:
-                self.nowPlayingListPageNum = 1
-            case .next:
-                self.nowPlayingListPageNum += 1
-            }
-            self.worker.requestMovieList(listType: .nowPlaying, pageNum: self.nowPlayingListPageNum)
-                .subscribe(onSuccess: { (list) in
-                    self.presenter?.presentPageInfo(response: .init(listType: .nowPlaying, nowPlayingMovieListData: list))
-                }, onFailure: { (error) in
-                    self.presenter?.presentPageInfoError(response: .init(error: error))
-                }).disposed(by: self.disposeBag)
-            break
-            
+        
         case .topRated:
             switch request.pageType {
             case .first:
@@ -80,7 +88,7 @@ class OTTMainInteractor: OTTMainBusinessLogic, OTTMainDataStore {
             case .next:
                 self.topRatedListPageNum += 1
             }
-            self.worker.requestMovieList(listType: .topRated, pageNum: self.topRatedListPageNum)
+            self.requestMovieList(listType: .topRated, pageNum: self.topRatedListPageNum)
                 .subscribe(onSuccess: { (list) in
                     self.presenter?.presentPageInfo(response: .init(listType: .topRated, topRatedMovieListData: list))
                 }, onFailure: { (error) in
@@ -96,13 +104,41 @@ class OTTMainInteractor: OTTMainBusinessLogic, OTTMainDataStore {
                 self.upComingListPageNum += 1
             }
             
-            self.worker.requestMovieList(listType: .upComing, pageNum: self.upComingListPageNum)
+            self.requestMovieList(listType: .upComing, pageNum: self.upComingListPageNum)
                 .subscribe(onSuccess: { (list) in
                     self.presenter?.presentPageInfo(response: .init(listType: .upComing, upComingMovieListData: list))
                 }, onFailure: { (error) in
                     self.presenter?.presentPageInfoError(response: .init(error: error))
                 }).disposed(by: self.disposeBag)
             break
+        }
+    }
+    
+    // 영화 리스트 데이터 호출
+    func requestMovieList(listType: OTTMain.ListType, pageNum: Int) -> Single<MovieListDataModel> {
+        Single.create { (observer) -> Disposable in
+            let url = "https://api.themoviedb.org/3/movie/\(listType.rawValue)?api_key=\(self.apiKey)&language=\(self.language)&page=\(pageNum)"
+            AF.request(url, method: .get)
+                .validate(contentType: ["application/json"])
+                .responseJSON { response in
+                    print(response.result) //들어옴
+                    switch response.result {
+                    case .success(_):
+                        print("API Connect Success - PopularList")
+                        guard let result = response.data else { return }
+                        do {
+                            let dto = try JSONDecoder().decode(MovieListDataModel.self, from: result)
+                            observer(.success(dto))
+                        } catch (let error) {
+                            observer(.failure(error))
+                        }
+                        
+                    case .failure(let error):
+                        print("API Connect Fail - PopularList")
+                        observer(.failure(error))
+                    }
+                }
+            return Disposables.create {}
         }
     }
 }

@@ -28,29 +28,6 @@ class OTTMainPresenter: OTTMainPresentationLogic {
         let imageBaseUrl: String = "https://image.tmdb.org/t/p/original"
         
         switch listType {
-        case .popular:
-            let cellModel: [MovieCellModel] = response.popularMovieListData?.results?.compactMap {
-                guard let path = $0.posterPath else { return nil }
-                return .init(imageURL: imageBaseUrl + path)
-            } ?? []
-            
-            let isFirstPageYn: Bool = {
-                let boolean = response.popularMovieListData?.page == 1 //첫 페이지
-                return boolean
-            }()
-            
-            let isLastPageYn: Bool = {
-                let boolean = response.popularMovieListData?.page == response.popularMovieListData?.totalPages //맨 끝
-                return boolean
-            }()
-            
-            self.viewController?.displayPageInfo(viewModel: .init(listType: .popular,
-                                                                  cellModel: .init(
-                                                                    cellModels: cellModel,
-                                                                    isFirstPageYn: isFirstPageYn,
-                                                                    isLastPageYn: isLastPageYn)))
-            break
-            
         case .nowPlaying:
             let cellModel: [MovieCellModel] = response.nowPlayingMovieListData?.results?.compactMap {
                 guard let path = $0.posterPath else { return nil }
@@ -68,6 +45,29 @@ class OTTMainPresenter: OTTMainPresentationLogic {
             }()
             
             self.viewController?.displayPageInfo(viewModel: .init(listType: .nowPlaying,
+                                                                  cellModel: .init(
+                                                                    cellModels: cellModel,
+                                                                    isFirstPageYn: isFirstPageYn,
+                                                                    isLastPageYn: isLastPageYn)))
+            break
+            
+        case .popular:
+            let cellModel: [MovieCellModel] = response.popularMovieListData?.results?.compactMap {
+                guard let path = $0.posterPath else { return nil }
+                return .init(imageURL: imageBaseUrl + path)
+            } ?? []
+            
+            let isFirstPageYn: Bool = {
+                let boolean = response.popularMovieListData?.page == 1 //첫 페이지
+                return boolean
+            }()
+            
+            let isLastPageYn: Bool = {
+                let boolean = response.popularMovieListData?.page == response.popularMovieListData?.totalPages //맨 끝
+                return boolean
+            }()
+            
+            self.viewController?.displayPageInfo(viewModel: .init(listType: .popular,
                                                                   cellModel: .init(
                                                                     cellModels: cellModel,
                                                                     isFirstPageYn: isFirstPageYn,

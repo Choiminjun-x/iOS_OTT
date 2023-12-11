@@ -78,17 +78,28 @@ class OTTMainViewController: UIViewController, OTTMainDisplayLogic {
     }
     
     private func eventBinding() {
-        self.pageView.popularMovieListNextEvent.bind {
-            self.interactor?.requestPageInfo(request: .init(listType: .popular, pageType: .next))
-        }.disposed(by: self.disposeBag)
-        self.pageView.nowPlayingMovieListNextEvent.bind {
+        self.pageView.nowPlayingMovieListNextEvent.bind { [unowned self] in
             self.interactor?.requestPageInfo(request: .init(listType: .nowPlaying, pageType: .next))
         }.disposed(by: self.disposeBag)
-        self.pageView.topRatedMovieListNextEvent.bind {
+        
+        self.pageView.popularMovieListNextEvent.bind { [unowned self] in
+            self.interactor?.requestPageInfo(request: .init(listType: .popular, pageType: .next))
+        }.disposed(by: self.disposeBag)
+       
+        self.pageView.topRatedMovieListNextEvent.bind { [unowned self] in
             self.interactor?.requestPageInfo(request: .init(listType: .topRated, pageType: .next))
         }.disposed(by: self.disposeBag)
-        self.pageView.upComingMovieListNextEvent.bind {
+        
+        self.pageView.upComingMovieListNextEvent.bind { [unowned self] in
             self.interactor?.requestPageInfo(request: .init(listType: .upComing, pageType: .next))
+        }.disposed(by: self.disposeBag)
+        
+        self.pageView.nowPlayingMovieDetailButtonDidTap.bind { [unowned self] (index) in
+            self.router?.routeToMovieDetailPage(listType: .nowPlaying, index: index)
+        }.disposed(by: self.disposeBag)
+        
+        self.pageView.popularMovieDetailButtonDidTap.bind { [unowned self] (index) in
+            self.router?.routeToMovieDetailPage(listType: .nowPlaying, index: index)
         }.disposed(by: self.disposeBag)
     }
     
@@ -96,8 +107,8 @@ class OTTMainViewController: UIViewController, OTTMainDisplayLogic {
     // MARK: Do something
     
     func requestPageInfo() {
-        self.interactor?.requestPageInfo(request: .init(listType: .popular, pageType: .first))
         self.interactor?.requestPageInfo(request: .init(listType: .nowPlaying, pageType: .first))
+        self.interactor?.requestPageInfo(request: .init(listType: .popular, pageType: .first))
         self.interactor?.requestPageInfo(request: .init(listType: .topRated, pageType: .first))
         self.interactor?.requestPageInfo(request: .init(listType: .upComing, pageType: .first))
     }
@@ -106,11 +117,11 @@ class OTTMainViewController: UIViewController, OTTMainDisplayLogic {
         guard let listType = viewModel.listType else { return }
         
         switch listType {
-        case .popular:
-            self.pageView.displayMovieList(viewModel: .init(listType: .popular, cellModel: viewModel.cellModel))
-            break
         case .nowPlaying:
             self.pageView.displayMovieList(viewModel: .init(listType: .nowPlaying, cellModel: viewModel.cellModel))
+            break
+        case .popular:
+            self.pageView.displayMovieList(viewModel: .init(listType: .popular, cellModel: viewModel.cellModel))
             break
         case .topRated:
             self.pageView.displayMovieList(viewModel: .init(listType: .topRated, cellModel: viewModel.cellModel))

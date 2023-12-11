@@ -11,7 +11,7 @@ import RxCocoa
 
 
 enum OTTMainViewModel {
-    struct MovieListModel {
+    struct MovieListDataModel {
         var cellModels: [MovieCellModel]
         var isFirstPageYn: Bool
         var isLastPageYn: Bool
@@ -26,11 +26,11 @@ class OTTMainView: UIView {
     @IBOutlet weak var categorySelectButton: UIButton!
     @IBOutlet weak var mainPosterImageView: UIImageView!
     
-    @IBOutlet weak var popularMovieListTitleLabel: UILabel!
-    @IBOutlet weak var popularMovieListCollectionView: UICollectionView!
-    
     @IBOutlet weak var nowPlayingMovieListTitleLabel: UILabel!
     @IBOutlet weak var nowPlayingMovieListCollectionView: UICollectionView!
+    
+    @IBOutlet weak var popularMovieListTitleLabel: UILabel!
+    @IBOutlet weak var popularMovieListCollectionView: UICollectionView!
     
     @IBOutlet weak var topRatedMovieListTitleLabel: UILabel!
     @IBOutlet weak var topRatedMovieListCollecionView: UICollectionView!
@@ -38,16 +38,22 @@ class OTTMainView: UIView {
     @IBOutlet weak var upComingMovieListTitleLabel: UILabel!
     @IBOutlet weak var upComingMovieListCollecionView: UICollectionView!
     
-    private let popularMovieListDelegate: popularMovieListDelegate = .init()
-    internal var popularMovieListNextEvent: PublishRelay<Void> {
-        get { return self.popularMovieListDelegate.nextEvent }
-    }
-
     private let nowPlayingMovieListDelegate: nowPlayingMovieListDelegate = .init()
     internal var nowPlayingMovieListNextEvent: PublishRelay<Void> {
         get { return self.nowPlayingMovieListDelegate.nextEvent }
     }
+    internal var nowPlayingMovieDetailButtonDidTap: PublishRelay<Int> {
+        get { return self.nowPlayingMovieListDelegate.movieDetailButtonDidTap }
+    }
     
+    private let popularMovieListDelegate: popularMovieListDelegate = .init()
+    internal var popularMovieListNextEvent: PublishRelay<Void> {
+        get { return self.popularMovieListDelegate.nextEvent }
+    }
+    internal var popularMovieDetailButtonDidTap: PublishRelay<Int> {
+        get { return self.popularMovieListDelegate.movieDetailButtonDidTap }
+    }
+
     private let topRatedMovieListDelegate: topRatedMovieListDelegate = .init()
     internal var topRatedMovieListNextEvent: PublishRelay<Void> {
         get { return self.topRatedMovieListDelegate.nextEvent }
@@ -104,10 +110,10 @@ class OTTMainView: UIView {
             $0.layer.borderWidth = 0.3
         }
         
-        self.popularMovieListTitleLabel.text = "지금 뜨는 콘텐츠"
-        self.popularMovieListCollectionView.do {
-            $0.delegate = self.popularMovieListDelegate
-            $0.dataSource = self.popularMovieListDelegate
+        self.nowPlayingMovieListTitleLabel.text = "현재 상영중인 콘텐츠"
+        self.nowPlayingMovieListCollectionView.do {
+            $0.delegate = self.nowPlayingMovieListDelegate
+            $0.dataSource = self.nowPlayingMovieListDelegate
             $0.register(MovieCell.self, forCellWithReuseIdentifier: "MovieCell")
             ($0.collectionViewLayout as? UICollectionViewFlowLayout)?.do {
                 $0.itemSize = .init(width: 188.55, height: 290)
@@ -115,10 +121,10 @@ class OTTMainView: UIView {
             }
         }
         
-        self.nowPlayingMovieListTitleLabel.text = "현재 상영중인 콘텐츠"
-        self.nowPlayingMovieListCollectionView.do {
-            $0.delegate = self.nowPlayingMovieListDelegate
-            $0.dataSource = self.nowPlayingMovieListDelegate
+        self.popularMovieListTitleLabel.text = "지금 뜨는 콘텐츠"
+        self.popularMovieListCollectionView.do {
+            $0.delegate = self.popularMovieListDelegate
+            $0.dataSource = self.popularMovieListDelegate
             $0.register(MovieCell.self, forCellWithReuseIdentifier: "MovieCell")
             ($0.collectionViewLayout as? UICollectionViewFlowLayout)?.do {
                 $0.itemSize = .init(width: 110.5, height: 170)
@@ -156,7 +162,7 @@ class OTTMainView: UIView {
         self.currentMovieType = listType
         
         switch listType {
-        case .popular:
+        case .nowPlaying:
             guard let cellModels = viewModel.cellModel?.cellModels else { return }
             
             let randomNum = Int.random(in: 0 ..< 20)
@@ -164,22 +170,6 @@ class OTTMainView: UIView {
             let mainImage = cellModels[randomNum]
             //스트레치 이미지 뷰에 랜덤으로 이미지 삽입
             self.mainPosterImageView.sd_setImage(with: URL(string: mainImage.imageURL), completed: nil)
-            
-            self.popularMovieListDelegate.cellModels = {
-                if viewModel.cellModel?.isFirstPageYn == true {
-                    return cellModels
-                } else {
-                    var arr = self.popularMovieListDelegate.cellModels
-                    arr?.append(contentsOf: cellModels)
-                    return arr
-                }
-            }()
-            
-            self.popularMovieListCollectionView.reloadData()
-            break
-            
-        case .nowPlaying:
-            guard let cellModels = viewModel.cellModel?.cellModels else { return }
             
             self.nowPlayingMovieListDelegate.cellModels = {
                 if viewModel.cellModel?.isFirstPageYn == true {
@@ -192,6 +182,22 @@ class OTTMainView: UIView {
             }()
             
             self.nowPlayingMovieListCollectionView.reloadData()
+            break
+            
+        case .popular:
+            guard let cellModels = viewModel.cellModel?.cellModels else { return }
+            
+            self.popularMovieListDelegate.cellModels = {
+                if viewModel.cellModel?.isFirstPageYn == true {
+                    return cellModels
+                } else {
+                    var arr = self.popularMovieListDelegate.cellModels
+                    arr?.append(contentsOf: cellModels)
+                    return arr
+                }
+            }()
+            
+            self.popularMovieListCollectionView.reloadData()
             break
             
         case .topRated:
@@ -229,21 +235,25 @@ class OTTMainView: UIView {
     }
 }
 
-fileprivate class popularMovieListDelegate: NSObject, UICollectionViewDelegate, UICollectionViewDataSource {
-    
+
+fileprivate class nowPlayingMovieListDelegate: NSObject, UICollectionViewDelegate, UICollectionViewDataSource {
     var cellModels: [MovieCellModel]?
     var isLastPage: Bool = false
     internal let nextEvent: PublishRelay<Void> = .init()
+    internal let movieDetailButtonDidTap: PublishRelay<Int> = .init()
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.cellModels?.count ?? 0
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
-        
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         return collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath).do {
             guard let cellModel = self.cellModels?[indexPath.row] else { return }
             ($0 as? MovieCell)?.displayCellModel(cellModel)
+            
+            ($0 as? MovieCell)?.selectClosure = {
+                self.movieDetailButtonDidTap.accept(indexPath.row)
+            }
         }
     }
     
@@ -256,21 +266,24 @@ fileprivate class popularMovieListDelegate: NSObject, UICollectionViewDelegate, 
     }
 }
 
-fileprivate class nowPlayingMovieListDelegate: NSObject, UICollectionViewDelegate, UICollectionViewDataSource {
-    
+fileprivate class popularMovieListDelegate: NSObject, UICollectionViewDelegate, UICollectionViewDataSource {
     var cellModels: [MovieCellModel]?
     var isLastPage: Bool = false
     internal let nextEvent: PublishRelay<Void> = .init()
+    internal let movieDetailButtonDidTap: PublishRelay<Int> = .init()
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.cellModels?.count ?? 0
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
-        
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         return collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath).do {
             guard let cellModel = self.cellModels?[indexPath.row] else { return }
             ($0 as? MovieCell)?.displayCellModel(cellModel)
+            
+            ($0 as? MovieCell)?.selectClosure = {
+                self.movieDetailButtonDidTap.accept(indexPath.row)
+            }
         }
     }
     
@@ -284,7 +297,6 @@ fileprivate class nowPlayingMovieListDelegate: NSObject, UICollectionViewDelegat
 }
 
 fileprivate class topRatedMovieListDelegate: NSObject, UICollectionViewDelegate, UICollectionViewDataSource {
-    
     var cellModels: [MovieCellModel]?
     var isLastPage: Bool = false
     internal let nextEvent: PublishRelay<Void> = .init()
@@ -293,8 +305,7 @@ fileprivate class topRatedMovieListDelegate: NSObject, UICollectionViewDelegate,
         return self.cellModels?.count ?? 0
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
-        
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         return collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath).do {
             guard let cellModel = self.cellModels?[indexPath.row] else { return }
             ($0 as? MovieCell)?.displayCellModel(cellModel)
@@ -311,7 +322,6 @@ fileprivate class topRatedMovieListDelegate: NSObject, UICollectionViewDelegate,
 }
 
 fileprivate class upComingMovieListDelegate: NSObject, UICollectionViewDelegate, UICollectionViewDataSource {
-    
     var cellModels: [MovieCellModel]?
     var isLastPage: Bool = false
     internal let nextEvent: PublishRelay<Void> = .init()
@@ -320,8 +330,7 @@ fileprivate class upComingMovieListDelegate: NSObject, UICollectionViewDelegate,
         return self.cellModels?.count ?? 0
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
-        
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         return collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath).do {
             guard let cellModel = self.cellModels?[indexPath.row] else { return }
             ($0 as? MovieCell)?.displayCellModel(cellModel)

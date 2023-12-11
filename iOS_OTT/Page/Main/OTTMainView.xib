@@ -212,10 +212,10 @@
                 <outlet property="categoryButton" destination="0RV-35-bim" id="x8a-e6-LpU"/>
                 <outlet property="categorySelectButton" destination="OKL-eC-R47" id="baF-Wp-PEp"/>
                 <outlet property="mainPosterImageView" destination="iAx-oJ-6j1" id="wz2-fL-vyW"/>
-                <outlet property="nowPlayingMovieListCollectionView" destination="aws-1i-DdN" id="hrl-19-XYy"/>
-                <outlet property="nowPlayingMovieListTitleLabel" destination="Qy0-9p-wbF" id="VUx-zr-hGi"/>
-                <outlet property="popularMovieListCollectionView" destination="XPc-5D-6VH" id="RvC-4Q-Bmz"/>
-                <outlet property="popularMovieListTitleLabel" destination="nJ4-xF-ewQ" id="NgP-yZ-JNs"/>
+                <outlet property="nowPlayingMovieListCollectionView" destination="XPc-5D-6VH" id="uz6-vC-cjr"/>
+                <outlet property="nowPlayingMovieListTitleLabel" destination="nJ4-xF-ewQ" id="xxR-tC-XGV"/>
+                <outlet property="popularMovieListCollectionView" destination="aws-1i-DdN" id="gWR-us-yyj"/>
+                <outlet property="popularMovieListTitleLabel" destination="Qy0-9p-wbF" id="6fx-at-rMN"/>
                 <outlet property="scrollView" destination="acp-0Z-l3j" id="s3F-vj-qF6"/>
                 <outlet property="seriesButton" destination="Mik-dc-ofq" id="fdl-pv-9Kb"/>
                 <outlet property="topRatedMovieListCollecionView" destination="wmN-ut-Met" id="dQW-lP-xo6"/>

@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import SDWebImage
+import RxSwift
 
 
 struct MovieCellModel {
@@ -18,6 +19,10 @@ class MovieCell: UICollectionViewCell {
     
     // MARK: - Properties
     private let imageView: UIImageView = .init()
+    
+    private let disposeBag: DisposeBag = .init()
+    
+    var selectClosure: (()->Void)?
     
     // MARK: - Object lifecycle
     override init(frame: CGRect) {
@@ -35,11 +40,27 @@ class MovieCell: UICollectionViewCell {
             $0.layer.masksToBounds = true
             $0.layer.cornerRadius = 5
             self.addSubview($0)
+            
             $0.snp.makeConstraints {
                 $0.height.equalToSuperview()
                 $0.width.equalTo(self.imageView.snp.height).multipliedBy(0.66)
                 $0.center.equalToSuperview()
             }
+        }
+        
+        UIButton().do {
+            self.addSubview($0)
+            
+            $0.snp.makeConstraints {
+                $0.width.height.equalToSuperview()
+                $0.top.bottom.leading.trailing.equalToSuperview()
+            }
+            
+            $0.rx
+                .tap
+                .bind {
+                    self.selectClosure?() 
+                }.disposed(by: self.disposeBag)
         }
     }
     

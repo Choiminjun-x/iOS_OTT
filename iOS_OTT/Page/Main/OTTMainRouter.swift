@@ -13,6 +13,7 @@
 import UIKit
 
 protocol OTTMainRoutingLogic {
+    func routeToMovieDetailPage(listType: OTTMain.ListType, index: Int)
 }
 
 protocol OTTMainDataPassing {
@@ -23,4 +24,28 @@ class OTTMainRouter: NSObject, OTTMainRoutingLogic, OTTMainDataPassing {
     weak var viewController: OTTMainViewController?
     var dataStore: OTTMainDataStore?
 
+    func routeToMovieDetailPage(listType: OTTMain.ListType, index: Int) {
+        let movieId = {
+            switch listType {
+            case .nowPlaying:
+                return self.dataStore?.nowPlayingMovieList[index].id
+            
+            case .popular:
+                return self.dataStore?.popularMovieList[index].id
+                
+            case .topRated:
+                return self.dataStore?.nowPlayingMovieList[index].id
+                
+            case .upComing:
+                return self.dataStore?.nowPlayingMovieList[index].id
+            }
+        }()
+     
+        let page = MovieDetailViewController()
+        var dataStore = page.router?.dataStore
+        dataStore?.movieId = movieId
+        
+        self.viewController?.present(page, animated: true)
+//        self.viewController?.pushViewController(page, animated: true)
+    }
 }
