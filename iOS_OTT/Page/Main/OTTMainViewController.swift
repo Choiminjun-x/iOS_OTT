@@ -82,6 +82,10 @@ class OTTMainViewController: UIViewController, OTTMainDisplayLogic {
             self.interactor?.requestPageInfo(request: .init(listType: .nowPlaying, pageType: .next))
         }.disposed(by: self.disposeBag)
         
+        self.pageView.nowPlayingMovieDetailButtonDidTap.bind { [unowned self] (index) in
+            self.router?.routeToMovieDetailPage(listType: .nowPlaying, index: index)
+        }.disposed(by: self.disposeBag)
+        
         self.pageView.popularMovieListNextEvent.bind { [unowned self] in
             self.interactor?.requestPageInfo(request: .init(listType: .popular, pageType: .next))
         }.disposed(by: self.disposeBag)
@@ -92,10 +96,6 @@ class OTTMainViewController: UIViewController, OTTMainDisplayLogic {
         
         self.pageView.upComingMovieListNextEvent.bind { [unowned self] in
             self.interactor?.requestPageInfo(request: .init(listType: .upComing, pageType: .next))
-        }.disposed(by: self.disposeBag)
-        
-        self.pageView.nowPlayingMovieDetailButtonDidTap.bind { [unowned self] (index) in
-            self.router?.routeToMovieDetailPage(listType: .nowPlaying, index: index)
         }.disposed(by: self.disposeBag)
         
         self.pageView.popularMovieDetailButtonDidTap.bind { [unowned self] (index) in

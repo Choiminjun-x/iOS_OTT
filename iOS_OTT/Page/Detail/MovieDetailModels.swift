@@ -19,9 +19,12 @@ enum MovieDetail {
         struct Request {
         }
         struct Response {
+            var movieDetailData: MovieDetailDataModel? 
             var error: Error?
         }
         struct ViewModel {
+            var viewModel: MovieDetailViewModel?
+            var error: Error? 
         }
     }
 }

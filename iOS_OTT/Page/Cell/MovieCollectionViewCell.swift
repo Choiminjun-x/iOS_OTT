@@ -1,5 +1,5 @@
 //
-//  MovieCell.swift
+//  MovieCollectionViewCell.swift
 //  iOS_OTT
 //
 //  Created by 최민준(Minjun Choi) on 2023/04/07.
@@ -15,7 +15,7 @@ struct MovieCellModel {
     var imageURL: String
 }
 
-class MovieCell: UICollectionViewCell {
+class MovieCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
     private let imageView: UIImageView = .init()
@@ -43,24 +43,9 @@ class MovieCell: UICollectionViewCell {
             
             $0.snp.makeConstraints {
                 $0.height.equalToSuperview()
-                $0.width.equalTo(self.imageView.snp.height).multipliedBy(0.66)
+                $0.width.equalTo(self.imageView.snp.height).multipliedBy(0.65)
                 $0.center.equalToSuperview()
             }
-        }
-        
-        UIButton().do {
-            self.addSubview($0)
-            
-            $0.snp.makeConstraints {
-                $0.width.height.equalToSuperview()
-                $0.top.bottom.leading.trailing.equalToSuperview()
-            }
-            
-            $0.rx
-                .tap
-                .bind {
-                    self.selectClosure?() 
-                }.disposed(by: self.disposeBag)
         }
     }
     

@@ -43,8 +43,8 @@ class MovieDetailInteractor: MovieDetailBusinessLogic, MovieDetailDataStore {
         }
         
         self.requestMovieDetail(movieId: movieId)
-            .subscribe(onSuccess: { (detailData) in
-            
+            .subscribe(onSuccess: { (data) in
+                self.presenter?.presentPageInfo(response: .init(movieDetailData: data))
             }, onFailure: { (error) in
                 self.presenter?.presentPageInfoError(response: .init(error: error))
             }).disposed(by: self.disposeBag)

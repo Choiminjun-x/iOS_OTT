@@ -20,10 +20,21 @@ protocol MovieDetailPresentationLogic {
 class MovieDetailPresenter: MovieDetailPresentationLogic {
     weak var viewController: MovieDetailDisplayLogic?
     
+    let imageBaseUrl: String = "https://image.tmdb.org/t/p/original"
+    
     // MARK: Do something
     
     func presentPageInfo(response: MovieDetail.Something.Response) {
-        let viewModel = MovieDetail.Something.ViewModel()
+        let viewModel = MovieDetail.Something.ViewModel(viewModel: .init(
+            posterImageURL: imageBaseUrl + (response.movieDetailData?.backdropPath ?? ""),
+            title: response.movieDetailData?.title,
+            tagLine: response.movieDetailData?.tagline,
+            overview: response.movieDetailData?.overview,
+            releaseDate: response.movieDetailData?.releaseDate,
+            runtTime: response.movieDetailData?.runtime,
+            voteAverage: response.movieDetailData?.voteAverage,
+            popularity: response.movieDetailData?.popularity))
+        
         self.viewController?.displayPageInfo(viewModel: viewModel)
     }
     

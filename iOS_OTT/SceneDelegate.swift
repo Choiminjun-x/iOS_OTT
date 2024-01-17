@@ -17,7 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
      
-        let view = OTTMainViewController()
+        let view = UINavigationController(rootViewController: OTTMainViewController()) 
         
         window?.rootViewController = view
         

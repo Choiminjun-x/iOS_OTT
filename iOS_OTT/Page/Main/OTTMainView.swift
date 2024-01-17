@@ -114,9 +114,11 @@ class OTTMainView: UIView {
         self.nowPlayingMovieListCollectionView.do {
             $0.delegate = self.nowPlayingMovieListDelegate
             $0.dataSource = self.nowPlayingMovieListDelegate
-            $0.register(MovieCell.self, forCellWithReuseIdentifier: "MovieCell")
+            $0.register(MovieCollectionViewCell.self, forCellWithReuseIdentifier: "MovieCollectionViewCell")
             ($0.collectionViewLayout as? UICollectionViewFlowLayout)?.do {
-                $0.itemSize = .init(width: 188.55, height: 290)
+                let itemHeight: Double = 290
+                let itemWidth: Double = itemHeight * 0.65
+                $0.itemSize = .init(width: itemWidth, height: itemHeight)
                 $0.scrollDirection = .horizontal
             }
         }
@@ -125,9 +127,11 @@ class OTTMainView: UIView {
         self.popularMovieListCollectionView.do {
             $0.delegate = self.popularMovieListDelegate
             $0.dataSource = self.popularMovieListDelegate
-            $0.register(MovieCell.self, forCellWithReuseIdentifier: "MovieCell")
+            $0.register(MovieCollectionViewCell.self, forCellWithReuseIdentifier: "MovieCollectionViewCell")
             ($0.collectionViewLayout as? UICollectionViewFlowLayout)?.do {
-                $0.itemSize = .init(width: 110.5, height: 170)
+                let itemHeight: Double = 170
+                let itemWidth: Double = itemHeight * 0.65
+                $0.itemSize = .init(width: itemWidth, height: itemHeight)
                 $0.scrollDirection = .horizontal
             }
         }
@@ -136,9 +140,11 @@ class OTTMainView: UIView {
         self.topRatedMovieListCollecionView.do {
             $0.delegate = self.topRatedMovieListDelegate
             $0.dataSource = self.topRatedMovieListDelegate
-            $0.register(MovieCell.self, forCellWithReuseIdentifier: "MovieCell")
+            $0.register(MovieCollectionViewCell.self, forCellWithReuseIdentifier: "MovieCollectionViewCell")
             ($0.collectionViewLayout as? UICollectionViewFlowLayout)?.do {
-                $0.itemSize = .init(width: 110.5, height: 170)
+                let itemHeight: Double = 170
+                let itemWidth: Double = itemHeight * 0.65
+                $0.itemSize = .init(width: itemWidth, height: itemHeight)
                 $0.scrollDirection = .horizontal
             }
         }
@@ -147,9 +153,11 @@ class OTTMainView: UIView {
         self.upComingMovieListCollecionView.do {
             $0.delegate = self.upComingMovieListDelegate
             $0.dataSource = self.upComingMovieListDelegate
-            $0.register(MovieCell.self, forCellWithReuseIdentifier: "MovieCell")
+            $0.register(MovieCollectionViewCell.self, forCellWithReuseIdentifier: "MovieCollectionViewCell")
             ($0.collectionViewLayout as? UICollectionViewFlowLayout)?.do {
-                $0.itemSize = .init(width: 110.5, height: 170)
+                let itemHeight: Double = 170
+                let itemWidth: Double = itemHeight * 0.65
+                $0.itemSize = .init(width: itemWidth, height: itemHeight)
                 $0.scrollDirection = .horizontal
             }
         }
@@ -247,14 +255,14 @@ fileprivate class nowPlayingMovieListDelegate: NSObject, UICollectionViewDelegat
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath).do {
+        return collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCollectionViewCell", for: indexPath).do {
             guard let cellModel = self.cellModels?[indexPath.row] else { return }
-            ($0 as? MovieCell)?.displayCellModel(cellModel)
-            
-            ($0 as? MovieCell)?.selectClosure = {
-                self.movieDetailButtonDidTap.accept(indexPath.row)
-            }
+            ($0 as? MovieCollectionViewCell)?.displayCellModel(cellModel)
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.movieDetailButtonDidTap.accept(indexPath.row)
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
@@ -277,13 +285,9 @@ fileprivate class popularMovieListDelegate: NSObject, UICollectionViewDelegate, 
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath).do {
+        return collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCollectionViewCell", for: indexPath).do {
             guard let cellModel = self.cellModels?[indexPath.row] else { return }
-            ($0 as? MovieCell)?.displayCellModel(cellModel)
-            
-            ($0 as? MovieCell)?.selectClosure = {
-                self.movieDetailButtonDidTap.accept(indexPath.row)
-            }
+            ($0 as? MovieCollectionViewCell)?.displayCellModel(cellModel)
         }
     }
     
@@ -306,9 +310,10 @@ fileprivate class topRatedMovieListDelegate: NSObject, UICollectionViewDelegate,
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath).do {
+        
+        return collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCollectionViewCell", for: indexPath).do {
             guard let cellModel = self.cellModels?[indexPath.row] else { return }
-            ($0 as? MovieCell)?.displayCellModel(cellModel)
+            ($0 as? MovieCollectionViewCell)?.displayCellModel(cellModel)
         }
     }
     
@@ -331,9 +336,9 @@ fileprivate class upComingMovieListDelegate: NSObject, UICollectionViewDelegate,
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath).do {
+        return collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCollectionViewCell", for: indexPath).do {
             guard let cellModel = self.cellModels?[indexPath.row] else { return }
-            ($0 as? MovieCell)?.displayCellModel(cellModel)
+            ($0 as? MovieCollectionViewCell)?.displayCellModel(cellModel)
         }
     }
     

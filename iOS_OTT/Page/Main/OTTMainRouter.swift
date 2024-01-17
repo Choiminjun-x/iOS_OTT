@@ -44,8 +44,7 @@ class OTTMainRouter: NSObject, OTTMainRoutingLogic, OTTMainDataPassing {
         let page = MovieDetailViewController()
         var dataStore = page.router?.dataStore
         dataStore?.movieId = movieId
-        
-        self.viewController?.present(page, animated: true)
-//        self.viewController?.pushViewController(page, animated: true)
+    
+        self.viewController?.navigationController?.pushViewController(page, animated: true)
     }
 }

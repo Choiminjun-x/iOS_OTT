@@ -176,6 +176,12 @@
                                             </collectionViewFlowLayout>
                                         </collectionView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="XPc-5D-6VH" firstAttribute="leading" secondItem="sky-Id-a7M" secondAttribute="leading" id="9Cq-DB-VPI"/>
+                                        <constraint firstAttribute="trailing" secondItem="XPc-5D-6VH" secondAttribute="trailing" id="BSJ-24-XZb"/>
+                                        <constraint firstAttribute="trailing" secondItem="nJ4-xF-ewQ" secondAttribute="trailing" id="ZYl-xa-s8t"/>
+                                        <constraint firstItem="nJ4-xF-ewQ" firstAttribute="leading" secondItem="sky-Id-a7M" secondAttribute="leading" id="fNh-xC-qey"/>
+                                    </constraints>
                                 </stackView>
                             </subviews>
                             <constraints>
