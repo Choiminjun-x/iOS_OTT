@@ -22,6 +22,7 @@ class MovieDetailPresenter: MovieDetailPresentationLogic {
     
     let imageBaseUrl: String = "https://image.tmdb.org/t/p/original"
     
+    
     // MARK: Do something
     
     func presentPageInfo(response: MovieDetail.Something.Response) {

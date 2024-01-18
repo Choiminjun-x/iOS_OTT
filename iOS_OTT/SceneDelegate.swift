@@ -17,9 +17,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
      
-        let view = UINavigationController(rootViewController: OTTMainViewController()) 
+        let tabBarController = UITabBarController()
+        let homeViewController = OTTMainViewController()
+        let searchViewController = MovieSearchViewController()
         
-        window?.rootViewController = view
+        homeViewController.tabBarItem = .init(title: "홈", image: UIImage(systemName: "house.fill"), tag: 0)
+        searchViewController.tabBarItem = .init(title: "검색", image: UIImage(systemName: "mail.and.text.magnifyingglass"), tag: 0)
+        tabBarController.tabBar.tintColor = .white
+        
+        tabBarController.setViewControllers([homeViewController, searchViewController], animated: true)
+        
+        window?.rootViewController = tabBarController
         
         window?.makeKeyAndVisible()
         

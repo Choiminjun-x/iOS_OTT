@@ -6,11 +6,12 @@
 //
 
 import UIKit
+import RxSwift
 import SDWebImage
 
 
 struct MovieDetailViewModel {
-    var posterImageURL: String? //backdropPath
+    var posterImageURL: String?
     var title: String?
     var tagLine: String? 
     var overview: String?
@@ -25,8 +26,12 @@ class MovieDetailView: UIView {
     @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var releaseDateLabel: UILabel!
+    @IBOutlet weak var runtimeLabel: UILabel!
+    @IBOutlet weak var voteAverageLabel: UILabel!
     @IBOutlet weak var tagLineLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
+    
+    @IBOutlet weak var closeButton: UIButton!
     
     static func create() -> MovieDetailView {
         let bundle = Bundle(for: MovieDetailView.self)
@@ -43,7 +48,6 @@ class MovieDetailView: UIView {
     }
     
     private func configure() {
-        
     }
     
     func displayPageInfo(viewModel: MovieDetail.Something.ViewModel?) {
@@ -52,7 +56,12 @@ class MovieDetailView: UIView {
         self.posterImageView.sd_setImage(with: URL(string: viewModel.posterImageURL ?? ""))
         self.titleLabel.text = viewModel.title
         self.releaseDateLabel.text = viewModel.releaseDate
-        self.tagLineLabel.text = "\"" + (viewModel.tagLine ?? "") + "\"" 
+        self.runtimeLabel.text = "\(viewModel.runtTime ?? 0)"
+        self.voteAverageLabel.text = "\(viewModel.voteAverage ?? 0)"
+        self.tagLineLabel.text = "\"" + (viewModel.tagLine ?? "") + "\""
         self.overviewLabel.text = viewModel.overview
+         
+        self.tagLineLabel.isHidden = (viewModel.tagLine ?? "").isEmpty
+        self.overviewLabel.isHidden = (viewModel.overview ?? "").isEmpty
     }
 }

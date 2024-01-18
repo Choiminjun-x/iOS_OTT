@@ -21,6 +21,13 @@
 		3EC606B529DFD3AB00AEACD7 /* OTTMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC606B329DFD3AB00AEACD7 /* OTTMainView.swift */; };
 		3EC606B629DFD3AB00AEACD7 /* OTTMainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EC606B429DFD3AB00AEACD7 /* OTTMainView.xib */; };
 		AF9C6C53E371C258BF9FB682 /* Pods_iOS_OTT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBE466AC15C63D582CB30BDC /* Pods_iOS_OTT.framework */; };
+		B03473E52B5958B800F48344 /* MovieSearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03473DF2B5958B800F48344 /* MovieSearchPresenter.swift */; };
+		B03473E72B5958B800F48344 /* MovieSearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03473E12B5958B800F48344 /* MovieSearchRouter.swift */; };
+		B03473E82B5958B800F48344 /* MovieSearchModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03473E22B5958B800F48344 /* MovieSearchModels.swift */; };
+		B03473E92B5958B800F48344 /* MovieSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03473E32B5958B800F48344 /* MovieSearchViewController.swift */; };
+		B03473EA2B5958B800F48344 /* MovieSearchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03473E42B5958B800F48344 /* MovieSearchInteractor.swift */; };
+		B03473ED2B5958FF00F48344 /* MovieSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03473EB2B5958FF00F48344 /* MovieSearchView.swift */; };
+		B03473EE2B5958FF00F48344 /* MovieSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B03473EC2B5958FF00F48344 /* MovieSearchView.xib */; };
 		B039AC832B27166400973FCC /* MovieDetailDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B039AC822B27166400973FCC /* MovieDetailDataModel.swift */; };
 		B039AC8B2B271BCE00973FCC /* MovieDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B039AC852B271BCE00973FCC /* MovieDetailPresenter.swift */; };
 		B039AC8D2B271BCE00973FCC /* MovieDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B039AC872B271BCE00973FCC /* MovieDetailRouter.swift */; };
@@ -49,6 +56,13 @@
 		3EC606B329DFD3AB00AEACD7 /* OTTMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTTMainView.swift; sourceTree = "<group>"; };
 		3EC606B429DFD3AB00AEACD7 /* OTTMainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OTTMainView.xib; sourceTree = "<group>"; };
 		4415A52EE62CD584E815255D /* Pods-iOS_OTT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS_OTT.release.xcconfig"; path = "Target Support Files/Pods-iOS_OTT/Pods-iOS_OTT.release.xcconfig"; sourceTree = "<group>"; };
+		B03473DF2B5958B800F48344 /* MovieSearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSearchPresenter.swift; sourceTree = "<group>"; };
+		B03473E12B5958B800F48344 /* MovieSearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSearchRouter.swift; sourceTree = "<group>"; };
+		B03473E22B5958B800F48344 /* MovieSearchModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSearchModels.swift; sourceTree = "<group>"; };
+		B03473E32B5958B800F48344 /* MovieSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSearchViewController.swift; sourceTree = "<group>"; };
+		B03473E42B5958B800F48344 /* MovieSearchInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSearchInteractor.swift; sourceTree = "<group>"; };
+		B03473EB2B5958FF00F48344 /* MovieSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSearchView.swift; sourceTree = "<group>"; };
+		B03473EC2B5958FF00F48344 /* MovieSearchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieSearchView.xib; sourceTree = "<group>"; };
 		B039AC822B27166400973FCC /* MovieDetailDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailDataModel.swift; sourceTree = "<group>"; };
 		B039AC852B271BCE00973FCC /* MovieDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailPresenter.swift; sourceTree = "<group>"; };
 		B039AC872B271BCE00973FCC /* MovieDetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailRouter.swift; sourceTree = "<group>"; };
@@ -74,7 +88,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3EB2D6A029E03CC70036DBB7 /* Main */ = {
+		3EB2D6A029E03CC70036DBB7 /* MovieMainPage */ = {
 			isa = PBXGroup;
 			children = (
 				3EC606B329DFD3AB00AEACD7 /* OTTMainView.swift */,
@@ -85,7 +99,7 @@
 				3EC606A929DFD39000AEACD7 /* OTTMainRouter.swift */,
 				3EC606AA29DFD39000AEACD7 /* OTTMainModels.swift */,
 			);
-			path = Main;
+			path = MovieMainPage;
 			sourceTree = "<group>";
 		};
 		3EC6068729DFD23F00AEACD7 = {
@@ -109,13 +123,13 @@
 		3EC6069229DFD23F00AEACD7 /* iOS_OTT */ = {
 			isa = PBXGroup;
 			children = (
-				3EC6069329DFD23F00AEACD7 /* AppDelegate.swift */,
-				3EC6069529DFD23F00AEACD7 /* SceneDelegate.swift */,
+				3EC606A129DFD24000AEACD7 /* Info.plist */,
 				3EC6069C29DFD24000AEACD7 /* Assets.xcassets */,
 				3EC6069E29DFD24000AEACD7 /* LaunchScreen.storyboard */,
-				3EC606A129DFD24000AEACD7 /* Info.plist */,
+				3EC6069329DFD23F00AEACD7 /* AppDelegate.swift */,
+				3EC6069529DFD23F00AEACD7 /* SceneDelegate.swift */,
 				3EC606C029DFD74100AEACD7 /* Page */,
-				3EB2D68E29E008E40036DBB7 /* Sets.swift */,
+				B03473DD2B5951A500F48344 /* Util */,
 			);
 			path = iOS_OTT;
 			sourceTree = "<group>";
@@ -134,8 +148,9 @@
 			children = (
 				3EC606C129DFF24B00AEACD7 /* Cell */,
 				3EC606B729DFD67F00AEACD7 /* Model */,
-				3EB2D6A029E03CC70036DBB7 /* Main */,
-				B039AC842B271B2300973FCC /* Detail */,
+				3EB2D6A029E03CC70036DBB7 /* MovieMainPage */,
+				B039AC842B271B2300973FCC /* MovieDetailPage */,
+				B03473DE2B59587D00F48344 /* MovieSearchPage */,
 			);
 			path = Page;
 			sourceTree = "<group>";
@@ -156,7 +171,29 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		B039AC842B271B2300973FCC /* Detail */ = {
+		B03473DD2B5951A500F48344 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				3EB2D68E29E008E40036DBB7 /* Sets.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		B03473DE2B59587D00F48344 /* MovieSearchPage */ = {
+			isa = PBXGroup;
+			children = (
+				B03473EB2B5958FF00F48344 /* MovieSearchView.swift */,
+				B03473EC2B5958FF00F48344 /* MovieSearchView.xib */,
+				B03473E32B5958B800F48344 /* MovieSearchViewController.swift */,
+				B03473E42B5958B800F48344 /* MovieSearchInteractor.swift */,
+				B03473DF2B5958B800F48344 /* MovieSearchPresenter.swift */,
+				B03473E12B5958B800F48344 /* MovieSearchRouter.swift */,
+				B03473E22B5958B800F48344 /* MovieSearchModels.swift */,
+			);
+			path = MovieSearchPage;
+			sourceTree = "<group>";
+		};
+		B039AC842B271B2300973FCC /* MovieDetailPage */ = {
 			isa = PBXGroup;
 			children = (
 				B039AC912B271BE300973FCC /* MovieDetailView.swift */,
@@ -167,7 +204,7 @@
 				B039AC872B271BCE00973FCC /* MovieDetailRouter.swift */,
 				B039AC882B271BCE00973FCC /* MovieDetailModels.swift */,
 			);
-			path = Detail;
+			path = MovieDetailPage;
 			sourceTree = "<group>";
 		};
 		D7E3CBC0E3F13E284C2D0841 /* Pods */ = {
@@ -241,6 +278,7 @@
 			files = (
 				3EC606A029DFD24000AEACD7 /* LaunchScreen.storyboard in Resources */,
 				3EC606B629DFD3AB00AEACD7 /* OTTMainView.xib in Resources */,
+				B03473EE2B5958FF00F48344 /* MovieSearchView.xib in Resources */,
 				B039AC942B271BE300973FCC /* MovieDetailView.xib in Resources */,
 				3EC6069D29DFD24000AEACD7 /* Assets.xcassets in Resources */,
 			);
@@ -298,19 +336,25 @@
 				3EC606B129DFD39000AEACD7 /* OTTMainViewController.swift in Sources */,
 				B039AC8E2B271BCE00973FCC /* MovieDetailModels.swift in Sources */,
 				3EC606AF29DFD39000AEACD7 /* OTTMainRouter.swift in Sources */,
+				B03473E52B5958B800F48344 /* MovieSearchPresenter.swift in Sources */,
 				B039AC8B2B271BCE00973FCC /* MovieDetailPresenter.swift in Sources */,
 				3EC606AD29DFD39000AEACD7 /* OTTMainPresenter.swift in Sources */,
 				3EC606B029DFD39000AEACD7 /* OTTMainModels.swift in Sources */,
 				3EB2D68F29E008E40036DBB7 /* Sets.swift in Sources */,
 				B039AC8D2B271BCE00973FCC /* MovieDetailRouter.swift in Sources */,
+				B03473ED2B5958FF00F48344 /* MovieSearchView.swift in Sources */,
 				3EC6069429DFD23F00AEACD7 /* AppDelegate.swift in Sources */,
 				B039AC832B27166400973FCC /* MovieDetailDataModel.swift in Sources */,
 				3EB2D69129E014290036DBB7 /* MovieCollectionViewCell.swift in Sources */,
 				B0C3BF062B20B0DB00546122 /* MovieListDataModel.swift in Sources */,
 				B039AC902B271BCE00973FCC /* MovieDetailInteractor.swift in Sources */,
 				3EC606B229DFD39000AEACD7 /* OTTMainInteractor.swift in Sources */,
+				B03473EA2B5958B800F48344 /* MovieSearchInteractor.swift in Sources */,
 				3EC606B529DFD3AB00AEACD7 /* OTTMainView.swift in Sources */,
+				B03473E82B5958B800F48344 /* MovieSearchModels.swift in Sources */,
 				B039AC8F2B271BCE00973FCC /* MovieDetailViewController.swift in Sources */,
+				B03473E92B5958B800F48344 /* MovieSearchViewController.swift in Sources */,
+				B03473E72B5958B800F48344 /* MovieSearchRouter.swift in Sources */,
 				B039AC932B271BE300973FCC /* MovieDetailView.swift in Sources */,
 				3EC6069629DFD23F00AEACD7 /* SceneDelegate.swift in Sources */,
 			);

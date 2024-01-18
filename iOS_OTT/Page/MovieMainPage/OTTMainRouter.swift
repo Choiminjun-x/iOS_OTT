@@ -42,9 +42,10 @@ class OTTMainRouter: NSObject, OTTMainRoutingLogic, OTTMainDataPassing {
         }()
      
         let page = MovieDetailViewController()
+        page.modalPresentationStyle = .fullScreen
         var dataStore = page.router?.dataStore
         dataStore?.movieId = movieId
     
-        self.viewController?.navigationController?.pushViewController(page, animated: true)
+        self.viewController?.present(page, animated: true)
     }
 }
