@@ -22,8 +22,6 @@ enum OTTMain {
         case upComing = "upcoming"
     }
     
-    // MARK: Use cases
-        
     enum Something {
         struct Request {
             enum PageType {
@@ -45,6 +43,7 @@ enum OTTMain {
         struct ViewModel{
             var listType: ListType?
             var cellModel: OTTMainViewModel.MovieListDataModel?
+            var error: Error?
         }
     }
 }

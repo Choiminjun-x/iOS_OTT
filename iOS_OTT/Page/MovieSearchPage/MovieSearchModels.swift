@@ -13,12 +13,32 @@
 import UIKit
 
 enum MovieSearch {
+    // 영화 리스트 타입
+    enum ListType: String {
+        case nowPlaying = "now_playing"
+        case popular = "popular"
+        case topRated = "top_rated"
+        case upComing = "upcoming"
+    }
+    
     enum PageInfo {
         struct Request {
+            enum PageType {
+                case first
+                case next
+            }
+            
+            var listType: ListType
+            var pageType: PageType
         }
         struct Response {
+            var movieListData: MovieListDataModel?
+            var error: Error?
         }
         struct ViewModel {
+            var listType: ListType?
+            var cellModel: MovieSearchViewModel.MovieListDataModel?
+            var error: Error?
         }
     }
 }

@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
      
         let tabBarController = UITabBarController()
         let homeViewController = OTTMainViewController()
-        let searchViewController = MovieSearchViewController()
+        let searchViewController = UINavigationController(rootViewController: MovieSearchViewController()) 
         
         homeViewController.tabBarItem = .init(title: "홈", image: UIImage(systemName: "house.fill"), tag: 0)
         searchViewController.tabBarItem = .init(title: "검색", image: UIImage(systemName: "mail.and.text.magnifyingglass"), tag: 0)

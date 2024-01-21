@@ -20,6 +20,7 @@ class MovieSearchViewController: UIViewController, MovieSearchDisplayLogic {
     var interactor: MovieSearchBusinessLogic?
     var router: (NSObjectProtocol & MovieSearchRoutingLogic & MovieSearchDataPassing)?
     
+    var pageView: MovieSearchView { self.view as! MovieSearchView }
     
     // MARK: Object lifecycle
     
@@ -52,16 +53,29 @@ class MovieSearchViewController: UIViewController, MovieSearchDisplayLogic {
     
     // MARK: View lifecycle
     
+    override func loadView() {
+        self.view = MovieSearchView.create()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setUpNaviBar()
         self.requestPageInfo()
     }
     
+    private func setUpNaviBar() {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.placeholder = "영화를 검색하세요..."
+        self.navigationItem.searchController = searchController
+        self.navigationItem.hidesSearchBarWhenScrolling = false
+    }
+    
     func requestPageInfo() {
-        let request = MovieSearch.PageInfo.Request()
-        self.interactor?.requestPageInfo(request: request)
+        self.interactor?.requestPageInfo(request: .init(listType: .nowPlaying, pageType: .first))
     }
     
     func displayPageInfo(viewModel: MovieSearch.PageInfo.ViewModel) {
+        self.pageView.displayPageInfo(viewModel: viewModel)
     }
 }
+

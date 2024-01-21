@@ -11,6 +11,8 @@
 //
 
 import UIKit
+import RxSwift
+import Alamofire
 
 
 protocol MovieSearchBusinessLogic {
@@ -24,11 +26,49 @@ protocol MovieSearchDataStore {
 class MovieSearchInteractor: MovieSearchBusinessLogic, MovieSearchDataStore {
     var presenter: MovieSearchPresentationLogic?
     
+    private let disposeBag: DisposeBag = .init()
+    
+    private var nowPlayingListPageNum: Int = 1
+    
+    private let apiKey = "8dfb5cff049f9d201dd76dbbe04a0d71"
+    private let language = "ko-RK" //en-US
+
     
     // MARK: Do something
     
     func requestPageInfo(request: MovieSearch.PageInfo.Request) {
-        let response = MovieSearch.PageInfo.Response()
-        self.presenter?.presentPageInfo(response: response)
+        self.requestMovieList(listType: request.listType, pageNum: nowPlayingListPageNum).subscribe(onSuccess: { (list) in
+            self.presenter?.presentPageInfo(response: .init(movieListData: list))
+        }, onFailure: { (error) in
+            self.presenter?.presentPageInfoError(response: .init(error: error))
+        }).disposed(by: self.disposeBag)
+    }
+    
+    // 영화 리스트 데이터 호출
+    func requestMovieList(listType: MovieSearch.ListType, pageNum: Int) -> Single<MovieListDataModel> {
+        Single.create { (observer) -> Disposable in
+            let url = "https://api.themoviedb.org/3/movie/\(listType.rawValue)?api_key=\(self.apiKey)&language=\(self.language)&page=\(pageNum)"
+            AF.request(url, method: .get)
+                .validate(contentType: ["application/json"])
+                .responseJSON { response in
+                    print(response.result) //들어옴
+                    switch response.result {
+                    case .success(_):
+                        print("API Connect Success - PopularList")
+                        guard let result = response.data else { return }
+                        do {
+                            let dto = try JSONDecoder().decode(MovieListDataModel.self, from: result)
+                            observer(.success(dto))
+                        } catch (let error) {
+                            observer(.failure(error))
+                        }
+                        
+                    case .failure(let error):
+                        print("API Connect Fail - PopularList")
+                        observer(.failure(error))
+                    }
+                }
+            return Disposables.create {}
+        }
     }
 }

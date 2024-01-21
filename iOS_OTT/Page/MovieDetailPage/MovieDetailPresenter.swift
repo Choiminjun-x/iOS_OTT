@@ -20,7 +20,7 @@ protocol MovieDetailPresentationLogic {
 class MovieDetailPresenter: MovieDetailPresentationLogic {
     weak var viewController: MovieDetailDisplayLogic?
     
-    let imageBaseUrl: String = "https://image.tmdb.org/t/p/original"
+    private let imageBaseUrl: String = "https://image.tmdb.org/t/p/original"
     
     
     // MARK: Do something
@@ -33,7 +33,7 @@ class MovieDetailPresenter: MovieDetailPresentationLogic {
             overview: response.movieDetailData?.overview,
             releaseDate: response.movieDetailData?.releaseDate,
             runtTime: response.movieDetailData?.runtime,
-            voteAverage: response.movieDetailData?.voteAverage,
+            voteAverage: String(format: "%.1f", response.movieDetailData?.voteAverage ?? 0),
             popularity: response.movieDetailData?.popularity))
         
         self.viewController?.displayPageInfo(viewModel: viewModel)

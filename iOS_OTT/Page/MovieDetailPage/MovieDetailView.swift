@@ -17,7 +17,7 @@ struct MovieDetailViewModel {
     var overview: String?
     var releaseDate: String?
     var runtTime: Int?
-    var voteAverage: Double?
+    var voteAverage: String?
     var popularity: Double?
 }
 
@@ -56,8 +56,8 @@ class MovieDetailView: UIView {
         self.posterImageView.sd_setImage(with: URL(string: viewModel.posterImageURL ?? ""))
         self.titleLabel.text = viewModel.title
         self.releaseDateLabel.text = viewModel.releaseDate
-        self.runtimeLabel.text = "\(viewModel.runtTime ?? 0)"
-        self.voteAverageLabel.text = "\(viewModel.voteAverage ?? 0)"
+        self.runtimeLabel.text = "\(viewModel.runtTime ?? 0)분"
+        self.voteAverageLabel.text = viewModel.voteAverage
         self.tagLineLabel.text = "\"" + (viewModel.tagLine ?? "") + "\""
         self.overviewLabel.text = viewModel.overview
          

@@ -38,8 +38,8 @@ class OTTMainInteractor: OTTMainBusinessLogic, OTTMainDataStore {
     var popularMovieList = [MovieListDataModel.Result]()
     var totalPage: Int?
     
-    let apiKey = "8dfb5cff049f9d201dd76dbbe04a0d71"
-    let language = "ko-RK" //en-US
+    private let apiKey = "8dfb5cff049f9d201dd76dbbe04a0d71"
+    private let language = "ko-RK" //en-US
     
     
     // MARK: Do something
