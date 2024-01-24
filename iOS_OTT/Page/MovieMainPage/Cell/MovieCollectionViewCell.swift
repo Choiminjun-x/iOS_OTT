@@ -22,7 +22,6 @@ class MovieCollectionViewCell: UICollectionViewCell {
     
     private let disposeBag: DisposeBag = .init()
     
-    var selectClosure: (()->Void)?
     
     // MARK: - Object lifecycle
     override init(frame: CGRect) {

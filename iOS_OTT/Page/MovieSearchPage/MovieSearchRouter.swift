@@ -13,7 +13,7 @@
 import UIKit
 
 protocol MovieSearchRoutingLogic {
-    
+    func routeToMovieDetailPage(movieId: Int)
 }
 
 protocol MovieSearchDataPassing {
@@ -23,4 +23,13 @@ protocol MovieSearchDataPassing {
 class MovieSearchRouter: NSObject, MovieSearchRoutingLogic, MovieSearchDataPassing {
     weak var viewController: MovieSearchViewController?
     var dataStore: MovieSearchDataStore?
+    
+    func routeToMovieDetailPage(movieId: Int) {
+        let page = MovieDetailViewController()
+        page.modalPresentationStyle = .fullScreen
+        var dataStore = page.router?.dataStore
+        dataStore?.movieId = movieId
+    
+        self.viewController?.present(page, animated: true)
+    }
 }

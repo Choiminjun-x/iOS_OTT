@@ -11,6 +11,9 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+
 
 protocol MovieSearchDisplayLogic: AnyObject {
     func displayPageInfo(viewModel: MovieSearch.PageInfo.ViewModel)
@@ -21,6 +24,9 @@ class MovieSearchViewController: UIViewController, MovieSearchDisplayLogic {
     var router: (NSObjectProtocol & MovieSearchRoutingLogic & MovieSearchDataPassing)?
     
     var pageView: MovieSearchView { self.view as! MovieSearchView }
+    
+    private let disposeBag: DisposeBag = .init()
+    
     
     // MARK: Object lifecycle
     
@@ -59,15 +65,30 @@ class MovieSearchViewController: UIViewController, MovieSearchDisplayLogic {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.pageView.do {
+            $0.movieDetailButtonDidTap.bind { [unowned self] movieId in
+                self.router?.routeToMovieDetailPage(movieId: movieId)
+            }.disposed(by: self.disposeBag)
+        }
+        
         self.setUpNaviBar()
         self.requestPageInfo()
     }
     
     private func setUpNaviBar() {
-        let searchController = UISearchController(searchResultsController: nil)
-        searchController.searchBar.placeholder = "영화를 검색하세요..."
-        self.navigationItem.searchController = searchController
-        self.navigationItem.hidesSearchBarWhenScrolling = false
+        let bounds = UIScreen.main.bounds
+        let width = bounds.size.width // 화면 너비
+        let searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: width - 28, height: 0))
+        
+        searchBar.delegate = self.pageView
+        
+        searchBar.placeholder = "영화를 검색해주세요.."
+        searchBar.searchTextField.backgroundColor = .black
+        searchBar.searchTextField.textColor = .white
+        searchBar.searchTextField.leftView?.tintColor = .white
+        
+        self.navigationItem.titleView = searchBar
     }
     
     func requestPageInfo() {

@@ -28,8 +28,9 @@ class MovieSearchPresenter: MovieSearchPresentationLogic {
     func presentPageInfo(response: MovieSearch.PageInfo.Response) {
         let cellModel: [MovieSearchTableViewCellModel] = response.movieListData?.results?.compactMap {
             guard let path = $0.backdropPath,
-                  let title = $0.title else { return nil }
-            return .init(imageURL: imageBaseUrl + path, title: title)
+                  let title = $0.title,
+                  let movieId = $0.id else { return nil}
+            return .init(imageURL: imageBaseUrl + path, title: title, movieId: movieId)
         } ?? []
         
         let isFirstPageYn: Bool = {

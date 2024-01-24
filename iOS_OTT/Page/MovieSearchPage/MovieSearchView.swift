@@ -22,8 +22,14 @@ class MovieSearchView: UIView {
     
     @IBOutlet weak var movieTableView: UITableView!
     
-//    var movieListCellModel: BehaviorRelay<MovieSearchTableViewCellModel?> = .init(value: nil)
-    var movieListCellModel: [MovieSearchTableViewCellModel]?
+    var movieListCellModels: BehaviorRelay<[MovieSearchTableViewCellModel]?> = .init(value: nil)
+    var filteredMovieListCellModels: BehaviorRelay<[MovieSearchTableViewCellModel]?> = .init(value: nil)
+    
+    var movieDetailButtonDidTap: PublishRelay<Int> = .init()
+    
+    var isFiltering: Bool = false
+    
+    private let disposeBag: DisposeBag = .init()
     
     static func create() -> MovieSearchView {
         let bundle = Bundle(for: MovieSearchView.self)
@@ -37,6 +43,7 @@ class MovieSearchView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.configure()
+        self.eventBinds()
     }
     
     private func configure() {
@@ -47,15 +54,25 @@ class MovieSearchView: UIView {
         }
     }
     
+    private func eventBinds() {
+        self.movieListCellModels.subscribe(onNext: { cellModels in
+            self.movieTableView.reloadData()
+        }).disposed(by: self.disposeBag)
+        
+        self.filteredMovieListCellModels.bind(onNext: { cellModels in
+            self.movieTableView.reloadData()
+        }).disposed(by: self.disposeBag)
+    }
+    
     func displayPageInfo(viewModel: MovieSearch.PageInfo.ViewModel?) {
-        self.movieListCellModel = viewModel?.cellModel?.cellModels
-        self.movieTableView.reloadData()
+        self.movieListCellModels.accept(viewModel?.cellModel?.cellModels)
     }
 }
 
+
 extension MovieSearchView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.movieListCellModel?.count ?? 0
+        return self.isFiltering ? self.filteredMovieListCellModels.value?.count ?? 0 : self.movieListCellModels.value?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -63,8 +80,52 @@ extension MovieSearchView: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
-        cell.displayCell(cellModel: self.movieListCellModel?[indexPath.row])
-            
+        if self.isFiltering {
+            cell.displayCell(cellModel: self.filteredMovieListCellModels.value?[indexPath.row])
+        } else {
+            cell.displayCell(cellModel: self.movieListCellModels.value?[indexPath.row])
+        }
+        
+        cell.selectionStyle = .none // didSelect는 동작하게끔 코드로 설정
+        
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let movieId = self.movieListCellModels.value?[indexPath.row].movieId else { return }
+        
+        self.movieDetailButtonDidTap.accept(movieId)
+    }
+}
+
+
+extension MovieSearchView: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard let text = searchBar.text else { return }
+        
+        self.filteredMovieListCellModels.accept(self.movieListCellModels.value?.filter({$0.title.localizedCaseInsensitiveContains(text)})) // 대소문자 구분 없이 필터
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let text = searchBar.text else { return }
+        
+        self.filteredMovieListCellModels.accept(self.movieListCellModels.value?.filter({$0.title.localizedCaseInsensitiveContains(text)})) // 대소문자 구분 없이 필터
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
+        self.isFiltering = false
+        self.movieTableView.reloadData()
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        self.isFiltering = true
+        searchBar.showsCancelButton = true
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        self.isFiltering = false
+        searchBar.showsCancelButton = false
     }
 }

@@ -13,6 +13,7 @@ import SnapKit
 struct MovieSearchTableViewCellModel {
     var imageURL: String
     var title: String
+    var movieId: Int 
 }
 
 class MovieSearchTableViewCell: UITableViewCell {
